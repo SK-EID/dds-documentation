@@ -34,6 +34,7 @@ signatures with various levels of additional validity information.
 In order to comply with the security model described above, the XAdES profile of "XAdES-X-L" is used in the DigiDoc system but "time-marks" are used i
 nstead of "time-stamps" – signing (and certificate validation) time comes with OCSP response.
 
+
 **This profile:**
 
 * Allows for incorporating following signed properties
@@ -47,7 +48,7 @@ nstead of "time-stamps" – signing (and certificate validation) time comes with
 
 As of result, it is possible to verify signature validity without any additional external information – the verifier should trust the issuer of signer's certificate and a OCSP responder certificate.
 
-**Image here**
+![Container](img/bdoc_container.png)
 
 Original files (which were signed) along with the signature(s), validation confirmation(s) and certificates are encapsulated within container with "SignedDoc" being as a root element.
 

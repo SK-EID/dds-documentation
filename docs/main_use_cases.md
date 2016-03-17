@@ -4,7 +4,7 @@
 
 In need of verifying a digitally signed document the easiest way is to use the StartSession request (described in chapter 8.1) valuing the SigDocXML parameter. If the only purpose is getting the overview of the content of DigiDoc and no further signing or certificate reading is intended, the StartSession request should be called with the parameter bHoldSession value set to false. In this case no further session closing is necessary. The StartSession request returns the signed document information as a structure of SignedDocInfo, where all the necessary parameters the signed document are readable.
 
-**Image here**
+![StartSession diagram](img/start_session.png)
 
 If StartSession is called with parameter bHoldSession=true, after verifying it some additional requests about signed document will be possible:
 
@@ -18,13 +18,13 @@ If StartSession is called with parameter bHoldSession=true, after verifying it s
 
 If StartSession is called with parameter bHoldSession=true, further session closing will be necessary.
 
-**Image here**
+![StartSession session closing diagram](img/start_session_close_session.png)
 
 ## Signing
 
 ### Mobile Signing in Asynchronous Client-Server mode
 
-**Image here**
+![Mobile signing diagram](img/mobile_sign_diagram.png)
 
 1. Application provider sends the files for signing (DigiDoc files or original files) to DigiDoc Service within the StartSession request.
 2. As a result of the StartSession request also a created session identifier is returned, what should be used in the headers of following requests.
@@ -49,6 +49,8 @@ If StartSession is called with parameter bHoldSession=true, further session clos
 ### Signing with smartcard
 
 The present example is based on the web-page enabling digital signing.
+
+![Signing with smartcard diagram](img/signing_with_smartcard.png)
 
 1. User of the digital signing application has chosen a procedure that requires data signing. The user starts the signing procedure pressing the respective button or hyperlink in a company web service.
 1. The data meant to be signed will be sent to DigiDocService by StartSession request. A new session is initiated with that. Every session is connected to a (digitally signed) document. But every digitally signed document may contain plenty of original files.
@@ -92,7 +94,7 @@ NB! In case that the content of the data file was not sent to servers within Sta
 
 ### Mobile authentication in asynchronous Client-Server mode
 
-**Image here**
+![Authentication diagram](img/mobile_auth_diagram.png)
 
 1. The Application Provider sends data required for the authentication to DigiDocService using MobileAutheticate (personal identification code, text to be displayed, language)
 2. DigiDocService makes a validity confirmation request about the validity of the user's certificate to the OCSP service.

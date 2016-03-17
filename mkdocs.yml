@@ -1,0 +1,18 @@
+site_name: DigiDocService Specification
+theme: cinder 
+extra_css:
+  - css/override.css
+markdown_extensions:
+ - grid_tables 
+pages:
+  - Overview:       
+      - Table of contents: index.md
+      - Introduction: introduction.md
+      - Terms and Acronyms: terms_and_acronyms.md
+      - Main use cases: main_use_cases.md
+      - Suggestions and requirements for Application providers: application_providers.md
+      - Service change history: service_change_history.md
+  - API Docs:
+      - Authentication: api/authenticate_api.md
+      - Digital Signature: api/digital_signature_api.md
+      - Data structures: api/data_structures.md

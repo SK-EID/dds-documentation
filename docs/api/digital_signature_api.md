@@ -292,9 +292,6 @@ NB! Adding a data file is possible in the DigiDoc file with no signatures only.
 |             |         |   | In case of the DIGIDOC-XML format, the hash is calculated over a DigiDoc <Datafile> element, using a canonicalized        |
 |             |         |   | form (for more information, see chapter 8.1).In case of BDOC, the has is calculated over the binary data file content.    |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
-| Attributes  | String  | - | Arbitrary amount of other attributes (meta data), what's add to <Datafile> element in DigiDoc file as attributes          |
-|             |         |   | (in form <name>="<value>").                                                                                               |
-+-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 | Content     | String  | - | The content of data file in Base64 encoding, is set if ContentType is EMBEDDED\_BASE64.                                   |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 

@@ -1,4 +1,4 @@
-# dds-documentation
+# DigiDocService specification
 
 Initial setup for editing documentation
 

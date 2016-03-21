@@ -2,6 +2,15 @@ li.third-level  {
     display: none;
 }
 
+a {
+    color: #DD481B;
+}
+
+.bs-sidenav a:hover {
+    color: #bf3e11;
+    font-weight: bold;
+}
+
 img {
     width: 100%;
     height: auto;
@@ -13,6 +22,13 @@ footer > hr {
 }
 
 .navbar-default {
+    background-color: #dd4814;
+    border: 1px solid #bf3e11;
+}
+
+.navbar-default ul.navbar-nav li:hover, 
+.navbar-default ul.navbar-nav li > a:hover, 
+.navbar-default ul.navbar-nav li > a:focus {
     background-color: #bf3e11;
 }
 
@@ -20,22 +36,6 @@ footer > hr {
 .navbar-default .navbar-nav>.open>a:hover, 
 .navbar-default .navbar-nav>.open>a:focus {
     background-color: #bf3e11;
-}
-
-.navbar-nav li.dropdown>a:hover, 
-.navbar-default .dropdown-menu>li>a:hover, 
-.navbar-default .dropdown-menu>.active>a, 
-.navbar-default .dropdown-menu>.active>a:hover {
-    background-color: #bf3e11;
-}
-
-.navbar-default .dropdown-menu>.active>a  {
-    font-weight: bold;
-}
-
-.navbar-default .dropdown-menu>li>a:hover, 
-.navbar-default .dropdown-menu>.active>a:hover {
-    font-weight: bold;
 }
 
 .navbar-default .navbar-nav>.active>a, 

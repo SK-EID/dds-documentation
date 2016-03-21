@@ -10,7 +10,5 @@ extra:
   document_version: '3.9.1'
 pages:
   - Overview: index.md      
-  - API Docs:
-      - Authentication: api/authenticate_api.md
-      - Digital Signature: api/digital_signature_api.md
-      - Data structures: api/data_structures.md
+  - API Docs: api/api_docs.md
+

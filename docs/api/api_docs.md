@@ -224,7 +224,7 @@ In the course of the StartSession's query a unique session identifier is returne
 
 | **Parameter** | **Type** | **R** | **Description** |
 | --- | --- | --- | --- |
-| SigningProfile | String | - | This value is currently ignored and may be empty. |
+| SigningProfile | String | - | This value is currently ignored and may be empty. <br/> **PS! This parameter is deprecated and exists only due to historical reasons. `SigningProfile` is identified by the service itself when a container is provided with `<SigDocXml>` parameter. <br/> It is recommended not to use `SigningProfile` parameter as it will be removed in the future!** |
 | SigDocXML | String | - | BDOC or DDOC document. A DigiDoc in XML transformed to HTML-Escaped format. For example `<DataFile>` should be transformed to `<DataFile>`. The container in BDOC format should be coded to BASE64 before it is delivered to the service. |
 | bHoldSession | Boolean | - | A flag that indicates whether the data sent within the StartSession should be stored or the session should be closed deleting all the temporary files straight after response.  The default value is `false`. |
 | datafile | Datafile | - | Given parameter enables to send to service a data file within the StartSession request. Based on the file a DigiDoc container is created. (The BDOC format is not supported in this use case – please see the "CreateSignedDoc" operation). For example, when sending a `cv.pdf`, a `cv.ddoc` is created which contains the "cv.pdf" only. The structure of a datafile element is described in [DataFileInfo](#datafileinfo). While adding the datafile it's unnecessary to determine the identifier. By default, DIGIDOC-XML 1.3 format fis created. |
@@ -445,13 +445,21 @@ Now the file is ready for digital signing.
 
 #### Query
 
-| **Parameter** | **Type** | **R** | **Description** |
-| --- | --- | --- | --- |
-| Sesscode | Integer | + | An identifier of the active session. |
-| Format | String | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |
-| Version | String | + | a version number of the format of a creatable document container (currently the supported versions for DIGIDOC-XML is 1.3 and BDOC 2.1) |
++----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
+| Parameter      | Type    | R | Description                                                                                                   |
++================+=========+===+===============================================================================================================+
+| Format         | String  | + | An identifier of the active session.                                                                          |
++----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
+| Version        | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |
++----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
+| SigningProfile | String  |   | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)               |
+|                |         |   |   and DDOC. ``LT_TM`` is currently the default option.                                                        |
+|                |         |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS signatures (BDOC with time-stamp / ASiC-E);          |
+|                |         |   | it is supported for the BDOC container format                                                                 |
++----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 
-> **NB!** Only container formats DIGIDOC-XML 1.3 and BDOC 2.0 are supported. If an inappropriate combination of given 
+
+> **NB!** Only container formats DIGIDOC-XML 1.3 and BDOC 2.1 are supported. If an inappropriate combination of given 
 > format and version number is used in request parameters, a SOAP error object with error message "Invalid format and version combination!" will be returned.
 
 The description of DigiDoc formats are available on the webpage [http://www.id.ee/index.php?id=36108](http://www.id.ee/index.php?id=36108) .
@@ -570,13 +578,9 @@ In case creation of "pure" mobile signature is needed – i.e. without creating 
 | CountryName                       | String    | - | Name of the country, where it's signed. Optional.                                        |
 +-----------------------------------+-----------+---+------------------------------------------------------------------------------------------+
 | SigningProfile                    | String    | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature          |
-|                                   |           |   |   with time-mark) and DDOC. "LT\_TM" is currently the default option.                    |
-|                                   |           |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS                                 | 
-|                                   |           |   |   (BDOC with time-stamp / ASiC-E) signatures. Currently it is a reserved value           |
-|                                   |           |   |   that simply returns the error code 101 with the following message: "BDOC-TS signature  | 
-|                                   |           |   |   format is not supported in the current service version. For signing BDOC files with    | 
-|                                   |           |   |   Mobile-ID, please use BDOC-TM format". Support for the "LT" profile is planned for     | 
-|                                   |           |   |   future releases of the service.                                                        |
+|                                   |           |   |   with time-mark) and DDOC. ``LT_TM`` is currently the default option.                   |
+|                                   |           |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E) | 
+|                                   |           |   |   signatures.                                                                            |
 +-----------------------------------+-----------+---+------------------------------------------------------------------------------------------+
 | MessagingMode                     | String    | + | Determines the mode how the response of the MobileSign is returned.                      | 
 |                                   |           |   | Following modes are supported:                                                           |
@@ -916,11 +920,7 @@ As a result of the request a new so called half-done signature is added to the D
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 | SigningProfile        | String            | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)       | 
 |                       |                   |   |   and DDOC. ``LT_TM`` is currently the default option.                                                |
-|                       |                   |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E)              |
-|                       |                   |   |   signatures. Currently it is a reserved value that simply returns the error code 101 with the        |
-|                       |                   |   |   following message: "BDOC-TS signature format is not supported in the current service version. For   |
-|                       |                   |   |   signing BDOC files with Mobile-ID, please use BDOC-TM format". Support for the "LT" profile is      |
-|                       |                   |   |   planned for future releases of the service.                                                         |
+|                       |                   |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E) signatures.  |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 
 Usually the signing application asks the user about the location information of the signing and forwards it to DigiDocService. Inserting the information about role and signing location is voluntary.

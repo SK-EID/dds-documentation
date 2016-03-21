@@ -83,8 +83,7 @@ Access to the service is created on the basis of an IP address. A contract with 
 depends on the number of signature and authentication queries per month and on the number of concurrent queries coming from one application.
 
 DigiDocService supports DigiDoc container formats ``DIGIDOC-XML 1.3`` and ``BDOC 2.1`` with ``time-marks``. BDOC with ``time-stamps`` (``BDOC-TS``, ``ASiC-E``) format is supported since version 3.8 for 
-using ``MobileCreateSignature`` method. Validation of BDOC-TS file format is supported starting from 3.9. Version 3.9.1 does not yet support methods ``PrepareSignature``, ``MobileSign``, ``AddDataFile``, 
-``RemoveDataFile``, ``RemoveSignature``, support will be added to version 3.10.
+using ``MobileCreateSignature`` method. Validation of BDOC-TS file format is supported starting from 3.9. Since 3.10 BDOC-TS is fully supported, i.e. support was added for following methods: ``CreateSignedDoc``, ``AddDataFile``, ``RemoveDataFile``, ``RemoveSignature``, ``PrepareSignature``, ``FinalizeSignature``, ``MobileSign``.
 
 Older formats (``SK-XML 1.0``, ``DIGIDOC-XML 1.1`` and ``DIGIDOC-XML 1.2``) are only supported for verification (document container format is checked in the ``MobileCreateSignature`` and ``CreateSignedDoc`` methods). 
 If an inappropriate combination of given format and version number is used in request parameters, a SOAP error object with error message "Invalid format and version combination" will be returned.
@@ -123,7 +122,7 @@ Syntax of the ``.ddoc`` files is described in the separate document [3] DigiDoc 
 
 ###  BDOC format
 
-In addition starting from version 3.5 DigiDocService also supports BDOC 2.1 _with__time-marks_ (BDOC-TM). BDOC _with time-stamps_ (BDOC-TS, ASiC-E) format is supported since version 3.8 for using MobileCreateSignature method. Validation of BDOC-TS file format is supported starting from 3.9. Version 3.9.1 does not yet support methods PrepareSignature, MobileSign, AddDataFile, RemoveDataFile, RemoveSignature, support will be added to version 3.10.
+In addition starting from version 3.5 DigiDocService also supports BDOC 2.1 _with__time-marks_ (BDOC-TM). BDOC _with time-stamps_ (BDOC-TS, ASiC-E) format is supported since version 3.8 for using MobileCreateSignature method. Validation of BDOC-TS container format is supported starting from 3.9 and since 3.10 BDOC-TS is fully supported, i.e. added support for following methods: CreateSignedDoc, AddDataFile, RemoveDataFile, PrepareSignature, FinalizeSignature, MobileSign, RemoveSignature.
 
  The description of BDOC file format is available in BDOC specification [9].
 

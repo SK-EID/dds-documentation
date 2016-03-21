@@ -1,0 +1,3 @@
+[submodule "theme/cinder"]
+	path = theme/cinder
+	url = git@github.com:mihkels/cinder.git

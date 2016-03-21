@@ -22,7 +22,9 @@ transaction ID and optionally user's certificate for authentication and certific
 |                       |                   |   | If both PhoneNo and IDCode parameters are given, correspondence between personal code and             |
 |                       |                   |   | phone number is verified and in case of inconsistency SOAP error code 301 is returned. It is          |
 |                       |                   |   | recommended to use both input parameters IDCode and PhoneNo! In case of Lithuanian Mobile-ID users    |
-|                       |                   |   | IDCode and PhoneNo are BOTH mandatory. (see chapter 5.2). If the element "PhoneNo" has been set,      |
+|                       |                   |   | IDCode and PhoneNo are BOTH mandatory.                                                                |
+|                       |                   |   | (see [Starting Mobile-ID Operations](../#starting-mobile-id-operations)). If the element `PhoneNo`    |
+|                       |                   |   | has been set,                                                                                         |
 |                       |                   |   | the country attribute set in the prefix is used (independent on the value of the                      |
 |                       |                   |   | element "CountryCode").                                                                               |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
@@ -64,19 +66,19 @@ transaction ID and optionally user's certificate for authentication and certific
 
 #### Response
 
-| **Parameter** | **Type** | **Description** |
+| **Parameter**   | **Type**  | **Description** |
 | --- | --- | --- |
-| Sesscode | Integer | Session code for current session |
-| Status | String | "OK" if no errors **NB!**"OK" does not mean that the user is successfully authenticated – response "USER\_AUTHENTICATED" would indicate this instead.In case error occurs, a SOAP error object is returned. Description of the SOAP error object and list of error codes are described in section 9.4. |
-| UserIDCode | String | Personal Identity Code of the user. The value is fetched from "Serial Number" field of the certificate |
-| UserGivenname | String | First name of the user. The value is fetched from "G" (given name) field of the certificate |
-| UserSurname | String | Last name of the user. The value is fetched from "SN" (surname) field of the certificate |
-| UserCountry | String(2) | Country of the origin in ISO 3166 2-character style. The value is fetched from "C" (country) field of the certificate |
-| UserCN | String | „Common Name" of the certificate holder. The value is fetched from "CN" (common name) field of the certificate |
-| CertificateData | String | User's certificate in BASE64 coding. Returned if parameter ReturnCertData was set „TRUE" in the query. |
-| ChallengeID | String | 4-character control code calculated on basis of  the Challenge value to be signed. This code is displayed on mobile phone's screen and shall be also displayed by Application Provider in order to ensure the user on authenticity of the query. **NB!** Application provider must ask user to verify that those codes are the same. |
-| Challenge | String | The data to be signed by the user. Consists of mixture of data sent by Application Provider in SPChallenge (10 bytes) field of the query and data added by DigiDocService (also 10 bytes).Returned only if SPChallenge field in the query was set. |
-| RevocationData | String | OCSP response in BASE64 coding. Returned if parameter ReturnRevocationData was set „TRUE" in the query. |
+| Sesscode        | Integer   | Session code for current session |
+| Status          | String    | "OK" if no errors **NB!**"OK" does not mean that the user is successfully authenticated – response "USER\_AUTHENTICATED" would indicate this instead.In case error occurs, a SOAP error object is returned. Description of the SOAP error object and list of error codes are described in [SOAP Error Messages](#soap-error-messages). |
+| UserIDCode      | String    | Personal Identity Code of the user. The value is fetched from "Serial Number" field of the certificate                                                                                                                                                                                                                                             |
+| UserGivenname   | String    | First name of the user. The value is fetched from "G" (given name) field of the certificate                                                                                                                                                                                                                                                        |
+| UserSurname     | String    | Last name of the user. The value is fetched from "SN" (surname) field of the certificate                                                                                                                                                                                                                                                           |
+| UserCountry     | String(2) | Country of the origin in ISO 3166 2-character style. The value is fetched from "C" (country) field of the certificate                                                                                                                                                                                                                              |
+| UserCN          | String    | „Common Name" of the certificate holder. The value is fetched from "CN" (common name) field of the certificate                                                                                                                                                                                                                                     |
+| CertificateData | String    | User's certificate in BASE64 coding. Returned if parameter ReturnCertData was set „TRUE" in the query.                                                                                                                                                                                                                                             |
+| ChallengeID     | String    | 4-character control code calculated on basis of  the Challenge value to be signed. This code is displayed on mobile phone's screen and shall be also displayed by Application Provider in order to ensure the user on authenticity of the query. **NB!** Application provider must ask user to verify that those codes are the same.               |
+| Challenge       | String    | The data to be signed by the user. Consists of mixture of data sent by Application Provider in SPChallenge (10 bytes) field of the query and data added by DigiDocService (also 10 bytes).Returned only if SPChallenge field in the query was set.                                                                                                 |
+| RevocationData  | String    | OCSP response in BASE64 coding. Returned if parameter ReturnRevocationData was set „TRUE" in the query.                                                                                                                                                                                                                                            |
 
 In case asynchClientServer messaging mode is used, the Application Provider shall start sending GetMobileAuthenticateStatus queries until error message or positive answer will be returned.
 
@@ -90,8 +92,8 @@ The structure of the XML message sent back to Application provider is as follows
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Sesscode | Integer | Session identifier |
-| Status | String | "USER\_AUTHENTICATED" in case of successful authentication. Other possible values are described in the description of response to the "GetMobileAuthenticateStatus" query. |
-| Data | String | Signature value in BASE64 encoding. Returned only if SPChallenge field in the query was set. For more info, see the "Signature" field in the chapter 7.2 and chapter 4.2 |
+| Status | String | "USER\_AUTHENTICATED" in case of successful authentication. Other possible values are described in the description of response to the `GetMobileAuthenticateStatus` query. |
+| Data | String | Signature value in BASE64 encoding. Returned only if SPChallenge field in the query was set. For more info, see the `Signature` field in the [GetMobileAuthenticateStatus](#getmobileauthenticatestatus) and [Signing algorithms](../#signing-algorithms) |
 
 
 ## GetMobileAuthenticateStatus
@@ -223,9 +225,9 @@ In the course of the StartSession's query a unique session identifier is returne
 | **Parameter** | **Type** | **R** | **Description** |
 | --- | --- | --- | --- |
 | SigningProfile | String | - | This value is currently ignored and may be empty. |
-| SigDocXML | String | - | BDOC or DDOC document. A DigiDoc in XML transformed to HTML-Escaped format. For example "<DataFile>" should be transformed to „&lt;DataFile&gt;". The container in BDOC format should be coded to BASE64 before it is delivered to the service. |
-| bHoldSession | Boolean | - | A flag that indicates whether the data sent within the StartSession should be stored or the session should be closed deleting all the temporary files straight after response.  The default value is "false". |
-| datafile | Datafile | - | Given parameter enables to send to service a data file within the StartSession request. Based on the file a DigiDoc container is created. (The BDOC format is not supported in this use case – please see the "CreateSignedDoc" operation). For example, when sending a "cv.pdf", a "cv.ddoc" is created which contains the "cv.pdf" only. The structure of a datafile element is described in chapter 9.3. While adding the datafile it's unnecessary to determine the identifier. By default, DIGIDOC-XML 1.3 format fis created. |
+| SigDocXML | String | - | BDOC or DDOC document. A DigiDoc in XML transformed to HTML-Escaped format. For example `<DataFile>` should be transformed to `<DataFile>`. The container in BDOC format should be coded to BASE64 before it is delivered to the service. |
+| bHoldSession | Boolean | - | A flag that indicates whether the data sent within the StartSession should be stored or the session should be closed deleting all the temporary files straight after response.  The default value is `false`. |
+| datafile | Datafile | - | Given parameter enables to send to service a data file within the StartSession request. Based on the file a DigiDoc container is created. (The BDOC format is not supported in this use case – please see the "CreateSignedDoc" operation). For example, when sending a `cv.pdf`, a `cv.ddoc` is created which contains the "cv.pdf" only. The structure of a datafile element is described in [DataFileInfo](#datafileinfo). While adding the datafile it's unnecessary to determine the identifier. By default, DIGIDOC-XML 1.3 format fis created. |
 
 > **NB!**  It's not allowed to send to the service a data of the SigDocXML and the Datafile at the same time, as these parameters exclude each other.
 
@@ -235,7 +237,7 @@ In the course of the StartSession's query a unique session identifier is returne
 | --- | --- | --- |
 | Status | String | Value „OK" or an error string |
 | Sesscode | Integer | Session code used for further requests in the given transaction. |
-| SignedDocInfo | SignedDocInfo | If a StartSession request contains a data file or a DigiDoc file, a SignedDocInfo structure will be returned in the format demonstrated in chapter 9.1 in current document. |
+| SignedDocInfo | SignedDocInfo | If a StartSession request contains a data file or a DigiDoc file, a SignedDocInfo structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo) in current document. |
 
 ### HASHCODE
 
@@ -459,7 +461,7 @@ The description of DigiDoc formats are available on the webpage [http://www.id.e
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be „OK". |
-| SignedDocInfo | String | SignedDocInfo structure will be returned in the format demonstrated in chapter 9.1. |
+| SignedDocInfo | String | SignedDocInfo structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo). |
 
 
 
@@ -483,13 +485,14 @@ NB! Adding a data file is possible in the DigiDoc file with no signatures only.
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 | MimeType    | String  | + | Type of the datafile                                                                                                      |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
-| ContentType | String  | + | Data file's content type (HASHCODE, EMBEDDED\_BASE64)                                                                     |                                                                     
+| ContentType | String  | + | Data file's content type (`HASHCODE`, `EMBEDDED_BASE64`)                                                                  |                                                                     
 |             |         |   |                                                                                                                           |                                  
-|             |         |   | * **HASHCODE** – To service is sent the hashcode only, not the entire data file's content.                                |                                  
+|             |         |   | * `HASHCODE` – To service is sent the hashcode only, not the entire data file's content.                                  |                                  
 |             |         |   |   The method how to calculate the hashcode is described in parameter _DigestType_ and the hashcode itself is in           |  
-|             |         |   |   parameter _DigestValue_. Please see section 8.1. how to calculate hash from the source data file and how to send        |
+|             |         |   |   parameter _DigestValue_. Please see [StartSession](#startsession). how to calculate hash from the                       |
+|             |         |   |   source data file and how to send                                                                                        |
 |             |         |   |   it to the service.                                                                                                      |
-|             |         |   | * **EMBEDDED\_BASE64 –** The content of the file is in Base64 encoding in Content parameter.                              |
+|             |         |   | * `EMBEDDED_BASE64` - The content of the file is in Base64 encoding in Content parameter.                                 |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 | Size        | Integer | + | The actual size of data file in bytes.                                                                                    |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
@@ -498,9 +501,10 @@ NB! Adding a data file is possible in the DigiDoc file with no signatures only.
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 | DigestValue | String  | - | The value of data file's hash in Base64 encoding.. Required for HASHCODE content type only.                               | 
 |             |         |   | In case of the DIGIDOC-XML format, the hash is calculated over a DigiDoc <Datafile> element, using a canonicalized        |
-|             |         |   | form (for more information, see chapter 8.1).In case of BDOC, the has is calculated over the binary data file content.    |
+|             |         |   | form (for more information, see [StartSession](#startsession)).In case of BDOC, the has is calculated over                |
+|             |         |   | the binary data file content.                                                                                             |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
-| Content     | String  | - | The content of data file in Base64 encoding, is set if ContentType is EMBEDDED\_BASE64.                                   |
+| Content     | String  | - | The content of data file in Base64 encoding, is set if ContentType is `EMBEDDED_BASE64`.                                  |
 +-------------+---------+---+---------------------------------------------------------------------------------------------------------------------------+
 
 #### Response
@@ -508,7 +512,7 @@ NB! Adding a data file is possible in the DigiDoc file with no signatures only.
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be „OK". |
-| SignedDocInfo | SignedDocInfo | SignedDocInfo structure will be returned in the format demonstrated in chapter 9.1. |
+| SignedDocInfo | SignedDocInfo | SignedDocInfo structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo). |
 
 
 
@@ -539,7 +543,9 @@ In case creation of "pure" mobile signature is needed – i.e. without creating 
 |                                   |           |   | correspondence between personal code and phone number is verified and in case of         | 
 |                                   |           |   | inconsistency SOAP error code 301 is returned.It is recommended to use both input        | 
 |                                   |           |   | parameters IDCode and PhoneNo! In case of Lithuanian Mobile-ID users SignerIDCode and    | 
-|                                   |           |   | SignerPhoneNo are mandatory (see chapter 5.2) . If the element "SignerPhoneNo" has       |
+|                                   |           |   | SignerPhoneNo are mandatory (see                                                         |
+|                                   |           |   | [Starting Mobile-ID Operations](../#starting-mobile-id-operations)).                     |
+|                                   |           |   | If the element `SignerPhoneNo` has                                                       |
 |                                   |           |   | been set, the country attribute set in the prefix is used (independent on the value      | 
 |                                   |           |   | of the element "SignersCountry").                                                        |
 +-----------------------------------+-----------+---+------------------------------------------------------------------------------------------+
@@ -611,7 +617,7 @@ In case ``asynchServerServer`` messaging mode is used, a message will be sent fr
 | --- | --- | --- |
 | Sesscode | Integer | An identifier of the active session. |
 | Status | String | Status code. „OK" if no errors, other possible responses are described in description of GetSignedDocInfo request (field „Status"). |
-| Data | String | a) XML structure described in section 9.1 of the document if value of the ReturnDocInfo was set "true" on the request.b) DigiDoc file as HTML encoded if ReturnDocInfo was set "false" and ReturnDocData  was set "true" in the request.c) Empty if both ReturnDocInfo and ReturnDocData were set „false" in the request. |
+| Data | String | a) XML structure described in [SignedDocInfo](#signeddocinfo) of the document if value of the ReturnDocInfo was set "true" on the request.b) DigiDoc file as HTML encoded if ReturnDocInfo was set "false" and ReturnDocData  was set "true" in the request.c) Empty if both ReturnDocInfo and ReturnDocData were set „false" in the request. |
 
 
 
@@ -653,7 +659,8 @@ GetStatusInfo request is for getting the information about the document in sessi
 | StatusCode        | String            | Status code of the last request. In case of successful request, "OK" or an error string.      |
 +-------------------+-------------------+-----------------------------------------------------------------------------------------------+
 | SignedDocInfo     | SignedDocInfo     | If "ReturnDocInfo" parameter in the GetSignedDocInfo request was set "true"                   | 
-|                   |                   | then ``SignedDocInfo`` structure will be returned in the format dessribed in chapter 9.1.     |
+|                   |                   | then ``SignedDocInfo`` structure will be returned in the format dessribed in                  |
+|                   |                   | [SignedDocInfo](#signeddocinfo).                                                              |
 +-------------------+-------------------+-----------------------------------------------------------------------------------------------+
 
 
@@ -674,7 +681,7 @@ The GetSignedDocInfo method shall be used to retrieve status information and the
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | ``OK`` or an error message |
-| SignedDocInfo | SignedDocInfo | XML structure according to the specification in section 9.1 of the document |
+| SignedDocInfo | SignedDocInfo | XML structure according to the specification in [SignedDocInfo](#signeddocinfo) of the document |
 
 
 ## GetSignedDoc
@@ -715,7 +722,7 @@ For instance if a digitally signed file is uploaded to the service within a Star
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be „OK". |
-| DataFileData | DataFileInfo | the original file information in DataFileInfo structure.The structure of ``DataFileInfo`` is described in chapter 9.3. Data files are returned in the same format as they were sent to the service with StartSession or AddDataFile methods. It means that if the service was sent the content of the data file, the current method will return the block of datafile having the content of the data file in Base64 encoding in DfData field. In case that only hash was sent to the service, only the hash is returned by the method. |
+| DataFileData | DataFileInfo | the original file information in DataFileInfo structure.The structure of ``DataFileInfo`` is described in [DataFileInfo](#datafileinfo). Data files are returned in the same format as they were sent to the service with StartSession or AddDataFile methods. It means that if the service was sent the content of the data file, the current method will return the block of datafile having the content of the data file in Base64 encoding in DfData field. In case that only hash was sent to the service, only the hash is returned by the method. |
 
 If you try to inquire a non-existing data file, you'll receive a SOAP error-object with error-message "No such DataFile!".
 
@@ -739,7 +746,7 @@ _RemoveDataFile_ request is for removing datafile from DigiDoc container. NB! Re
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be ``OK``. |
-| SignedDocInfo | SignedDocInfo | The document in the session info after removing the datafile. ``SignedDocInfo`` structure will be returned in the format demonstrated in chapter 9.1. |
+| SignedDocInfo | SignedDocInfo | The document in the session info after removing the datafile. ``SignedDocInfo`` structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo). |
 
 If removing the datafile is unsuccessful, a SOAP error-object will be returned with an error-message. Ie when you try to remove datafile from signed document error "Cannot change a signed doc" is returned.
 
@@ -762,7 +769,7 @@ RemoveSignature request enables to remove a signature from the digitally signed 
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be ``OK``. |
-| SignedDocInfo | SignedDocInfo | The document in the session info after removing the signature. ``SignedDocInfo`` structure will be returned in the format demonstrated in chapter 9.1. |
+| SignedDocInfo | SignedDocInfo | The document in the session info after removing the signature. ``SignedDocInfo`` structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo). |
 
 If  removing the signature is unsuccessful, a SOAP error-object will be returned with an error-message.
 
@@ -956,7 +963,7 @@ With FinalizeSignature request the signature prepared at PrepareSignature step i
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Status | String | If the request is successful, the value will be „OK". |
-| SignedDocInfo | SignedDocInfo | The document in the session info after adding the signature. SignedDocInfo structure will be returned in the format demonstrated in chapter 9.1. |
+| SignedDocInfo | SignedDocInfo | The document in the session info after adding the signature. SignedDocInfo structure will be returned in the format demonstrated in [SignedDocInfo](#signeddocinfo). |
 
 
 
@@ -989,7 +996,8 @@ needed, MobileSign method should be used instead.
 |                       |                   |   | and IDCode parameters are given, correspondence between personal code and phone number is             |
 |                       |                   |   | verified and in case of inconsistency SOAP error code 301 is returned. It is recommended to use       |
 |                       |                   |   | both input parameters IDCode and PhoneNo! In case of Lithuanian Mobile-ID users IDCode and            |
-|                       |                   |   | PhoneNo are mandatory (see chapter 5.2). If the element "PhoneNo" has been set, the country           |
+|                       |                   |   | PhoneNo are mandatory (see [Startig Mobile-ID operations](../#starting-mobile-id-operations)).        |
+|                       |                   |   | If the element "PhoneNo" has been set, the country                                                    |
 |                       |                   |   | attribute set in the prefix is used (independent on the value of the element "SignersCountry").       |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 | Language              | String(3)         | + | Language for user dialog in mobile phone. 3-character capitalized acronyms are used.                  | 
@@ -1033,7 +1041,8 @@ needed, MobileSign method should be used instead.
 |                       |                   |   | +-------------+---+-------------------------------------------------------------------------------+   |
 |                       |                   |   | | DigestValue | + | hash value of the data file in BASE64 encoding. In case of DIGIDOC-XML        |   |
 |                       |                   |   | |             |   | format, hash is calculated over DigiDoc <Datafile> element canonic form.      |   |
-|                       |                   |   | |             |   | Please see section 8.1 how to calculate hash over data file and send it to    |   |
+|                       |                   |   | |             |   | Please see [StartSession](#startsession) how to calculate hash                |   |
+|                       |                   |   | |             |   | over data file and send it to                                                 |   |
 |                       |                   |   | |             |   | the service. For the BDOC form, hash is calculated over the binary datafile   |   |
 |                       |                   |   | |             |   | contents and then is encoded in Base64.                                       |   |
 |                       |                   |   | +-------------+---+-------------------------------------------------------------------------------+   |
@@ -1071,7 +1080,7 @@ needed, MobileSign method should be used instead.
 | --- | --- | --- |
 | Sesscode | Integer | Identificator of the active session |
 | ChallengeID | String | 4-character control code calculated on basis of  the Challenge value to be signed. This code is displayed on mobile phone's screen and shall be also displayed by Application Provider in order to ensure the user on authencity of the query. |
-| Status | String | „OK" when no errors. In case of an error, SOAB error object is returned according to the specification in section 9.4 of the current document. |
+| Status | String | „OK" when no errors. In case of an error, SOAB error object is returned according to the specification in [SOAP Error Messages](#soap-error-messages) of the current document. |
 
 If asynchClientServer messaging mode is used then GetMobileCreateSignatureStatus query shall be sent after getting a positive response.
 
@@ -1191,7 +1200,7 @@ This operation locates the signer's certificate, fetches an OCSP response and se
 
 The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.
 
-This operation is using the document/literal style and is accessible from a new sub-address /v2/?wsdl.  New version of the service uses a separate WSDL, and error message format has been updated (see chapter 9.4).
+This operation is using the document/literal style and is accessible from a new sub-address /v2/?wsdl.  New version of the service uses a separate WSDL, and error message format has been updated (see [SOAP Error messages](#soap-error-messages)).
 
 > **NOTE**: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.
 
@@ -1216,7 +1225,7 @@ This operation is using the document/literal style and is accessible from a new 
 | ChallengeID | String | - 4 (number) character control code, which is calculated on a basis of Challenge value that will be sent to the user's phone for signing.- 40 characters long HEX i.e. hash Challenge to be signed. Will be used only in case of Bite MSSP operator.This control code shall be displayed to the user by the application; with this it will be possible for the user to prove the authenticity of the request.NOTE: Application must prompt the user to check the compatibility of the control code displayed in the application and on the phone screen. |
 | Status | String | "OK" if the procedure was performed successfully. If method call-up will result with an error, a SOAP error object will be returned. |
 
-If method call-up will result with an error, a SOAP error object will be returned according to the description in chapter 9.4.
+If method call-up will result with an error, a SOAP error object will be returned according to the description in [SOAP Error messages](#soap-error-messages).
 
 
 
@@ -1259,7 +1268,7 @@ This operation returns the status of the hash signing operation and, in the case
 |                       |               |   access to validity confirmation service of OCSP used by DigiDocService.                  |
 +-----------------------+---------------+--------------------------------------------------------------------------------------------+
 | Signature             | String        | Signed hash in a PKC1 / PKCS13 container. (Will be returned                                |
-|                       |               | only if Status == "SIGNATURE"). Can be either a RSA or an ECDSA signature, depending       |
+|                       |               | only if Status == `SIGNATURE`). Can be either a RSA or an ECDSA signature, depending       |
 |                       |               | on the returned certificate in the "CertificateData" field.                                |
 +-----------------------+---------------+--------------------------------------------------------------------------------------------+
 | RevocationData        | String        | Validity information of the certificate (PEM format)                                       |
@@ -1267,7 +1276,7 @@ This operation returns the status of the hash signing operation and, in the case
 | CertificateData       | String        | Certificate in PEM format, encoded in Base64.                                              |
 +-----------------------+---------------+--------------------------------------------------------------------------------------------+
 
-If method call-up will result with an error, a SOAP error object will be returned according to the description in chapter 9.4.
+If method call-up will result with an error, a SOAP error object will be returned according to the description in [SOAP Error messages](#soap-error-messages).
 
 
 
@@ -1281,7 +1290,7 @@ Presents the structure of a DigiDoc file (container).
 * **Format** – File format for the signed container (DIGIDOC-XML and BDOC are supported currently).
 * **Version** - The version of a signed file format (in case of DIGIDOC-XML the 
   versions 1.1, 1.2, 1.3; in case of BDOC the version 2.1).
-* **DataFileInfo –** Information about the files in container. The data structure is described in chapter 9.3in the current 
+* **DataFileInfo –** Information about the files in container. The data structure is described in [DataFileInfo](#datafileinfo) in the current 
   document. A DataFileInfo section may appear 0..n times in an SignedDocInfo section, depending on the number of data files.
 * **SignatureInfo** – Contains the info of the signatures in the signed file. This section may appear 0..n times depending on the number of signatures. Contains the following attributes:
     * **Id –** The unique signature's identifier within the current document/transaction. Signatures' identifiers begin with „S" and the signature's sequence number is followed.
@@ -1294,7 +1303,7 @@ Presents the structure of a DigiDoc file (container).
             ``TECHNICAL`` – technical issue;  
             ``USER`` – issue caused by user;  
             ``LIBRARY`` – internal error of the DigiDoc library.  
-            ``WARNING`` – A warning from the DigiDoc library. Legally, the signature is valid, but additional changes are not allowed in the container. For more information, see chapter 9.5.  
+            ``WARNING`` – A warning from the DigiDoc library. Legally, the signature is valid, but additional changes are not allowed in the container. For more information, see [Container validation](#container-validation).  
         * **description –** Error description in English.
     * **SigningTime** – Local time (for example, time of the signer's computer, time of signing web server) of signing according to the "
       The W3C note _Date and Time Formats"_ [5]. NB! This is not the official time of signing, the official time is defined in current structure 
@@ -1310,11 +1319,11 @@ Presents the structure of a DigiDoc file (container).
     * **Signer** – Information about the signer including the following attributes:
         * **CommonName** – Name of the signer, taken from the signer certificate's Subject field's CN parameter.
         * **IDCode** –Identification number of the signer, taken from the signer certificate's Subject field's Serial Number parameter.
-        * **Certificate** – Main information of the certificate used for signing according to the current document's chapter 9.2.
+        * **Certificate** – Main information of the certificate used for signing according to the current document's [CertificateInfo](#certificateinfo).
     * **Confirmation –** OCSP validity confirmation's data structure. Every correct and valid signature contains a structure of a validity confirmation. Confirmation section contains the following attributes:
         * **ResponderID** – Distinguish name of the OCSP validity confirmation server (OCSP Responder ID)
         * **ProducedAt** – Validity Confirmation obtaining time according to the "The W3C note _Date and Time Formats"_ [5] (f.e._"_09.14T21:00:00Z"). This time is counted as the official signing time.
-        * **Responder Certificate** - Certificate of the validity confirmation service (OCSP) server according to the format described in current document chapter 9.2.
+        * **Responder Certificate** - Certificate of the validity confirmation service (OCSP) server according to the format described in current document [CertificateInfo](#certificateinfo).
     * **Timestamps –** Information about the RFC3161 timestamps that are related to the signature. It will be outputted only in case of BDOC-TS/ASiC-E containers. Timestamps section contains the following attributes:
         * **Id** – Currently not included.
         * **Type** - The type of the timestamp. The value for signature's timestamp is always ``SIGNATURE\_TIMESTAMP``.
@@ -1324,7 +1333,7 @@ Presents the structure of a DigiDoc file (container).
         * **Errorbound** - Currently not included.
         * **Ordered** - Currently it is always set to "false".
         * **TSA** - Currently not included.
-        * **Certificate** - Main information of the certificate used for signing the timestamp according to the current document's chapter 9.2.
+        * **Certificate** - Main information of the certificate used for signing the timestamp according to the current document's [CertificateInfo](#certificateinfo).
     * **CRLInfo** - Information about signature related revocation list.  The revocation revocation list related functionality is not realized in the service version.
 
 #### Sample of structure
@@ -1450,7 +1459,7 @@ The given data structure describes the information of the data file(s) inside Di
 - **Attributes** - Arbitrary amount of other attributes (meta data), what's add to <Datafile> element in DigiDoc file as attributes (in format <name>="<value>").
 - **DfData** - Data file content in Base64 encoding.
 
-\* See example, how to calculate hash over data file and send it to the service from section 8.1
+\* See example, how to calculate hash over data file and send it to the service from [StartSession](#startsession) 
 
 ## SOAP Error Messages
 

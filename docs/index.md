@@ -7,8 +7,8 @@
 1. References        
 --->
 
-* [Introduction](index)        
-    * [Formats of digitally signed files](index#formats-of-digitally-signed-files)        
+* [Introduction]()        
+    * [Formats of digitally signed files](#formats-of-digitally-signed-files)        
         * [DDOC format](#ddoc-format)        
         * [BDOC format](#bdoc-format)       
     * [Signing algorithms](#signing-algorithms)        
@@ -26,39 +26,39 @@
         * [Mobile authentication in asynchronous Client-Server mode](#mobile-authentication-in-asynchronous-client-server-mode)        
         * [Authentication using smartcard](#authentication-using-smartcard)        
 * [Authentication API](api/api_docs#authentication-api) 
-    * [MobileAuthenticate](api/authenticate_api#mobileautheticate)        
-    * [GetMobileAuthenticateStatus](api/authenticate_api#getmobileauthenticatestatus)        
-    * [CheckCertificate](api/authenticate_api#checkcertificate)        
-* [Digital Signature API](api/digital_signature_api)       
-    * [StartSession](api/digital_signature_api#startsession)       
-        * [HASHCODE](api/digital_signature_api#hashcode)        
-    * [CloseSession](api/digital_signature_api#closesession)        
-    * [CreateSignedDoc](api/digital_signature_api#createsigneddoc)        
-    * [AddDataFile](api/digital_signature_api#adddatafile)        
-    * [MobileSign](api/digital_signature_api#mobilesign)        
-    * [GetStatusInfo](api/digital_signature_api#getstatusinfo)  
-    * [GetSignedDocInfo](api/digital_signature_api#getsigneddocinfo)        
-    * [GetSignedDoc](api/digital_signature_api#getsigneddoc)        
-    * [GetDataFile](api/digital_signature_api#getdatafile)        
-    * [RemoveDataFile](api/digital_signature_api#removedatafile)        
-    * [RemoveSignature](api/digital_signature_api#removesignature)        
-    * [GetSignersCertificate](api/digital_signature_api#getsignerscertificate)        
-    * [GetNotarysCertificate](api/digital_signature_api#getnotaryscertificate)       
-    * [GetNotary](api/digital_signature_api#getnotary)        
-    * [GetVersion](api/digital_signature_api#GetVersion)        
-    * [PrepareSignature](api/digital_signature_api#preparesignature)        
-    * [FinalizeSignature](api/digital_signature_api#finalizesignature)        
-    * [MobileCreateSignature](api/digital_signature_api#mobilecreatesignature)        
-    * [GetMobileCreateSignatureStatus](api/digital_signature_api#getmobilecreatesignaturestatus)        
-    * [GetMobileCertificate](api/digital_signature_api#getmobilecertificate)        
-    * [MobileSignHash](api/digital_signature_api#mobilesighhash)        
-    * [GetMobileSignHashStatusRequest](api/digital_signature_api#getmobilesignhashstatusrequest)        
-* [Data structures](api/data_structures)        
-    * [SignedDocInfo](api/data_structures#signeddocinfo)        
-    * [CertificateInfo](api/data_structures#certificateinfo)       
-    * [DataFileInfo](api/data_structures#datafileinfo)        
-    * [SOAP Error Messages](api/data_structures#soap-error-messages)        
-    * [Container validation](api/data_structures#container-validation)        
+    * [MobileAuthenticate](api/api_docs#mobileautheticate)        
+    * [GetMobileAuthenticateStatus](api/api_docs#getmobileauthenticatestatus)        
+    * [CheckCertificate](api/api_docs#checkcertificate)        
+* [Digital Signature API](api/api_docs)       
+    * [StartSession](api/api_docs#startsession)       
+        * [HASHCODE](api/api_docs#hashcode)        
+    * [CloseSession](api/api_docs#closesession)        
+    * [CreateSignedDoc](api/api_docs#createsigneddoc)        
+    * [AddDataFile](api/api_docs#adddatafile)        
+    * [MobileSign](api/api_docs#mobilesign)        
+    * [GetStatusInfo](api/api_docs#getstatusinfo)  
+    * [GetSignedDocInfo](api/api_docs#getsigneddocinfo)        
+    * [GetSignedDoc](api/api_docs#getsigneddoc)        
+    * [GetDataFile](api/api_docs#getdatafile)        
+    * [RemoveDataFile](api/api_docs#removedatafile)        
+    * [RemoveSignature](api/api_docs#removesignature)        
+    * [GetSignersCertificate](api/api_docs#getsignerscertificate)        
+    * [GetNotarysCertificate](api/api_docs#getnotaryscertificate)       
+    * [GetNotary](api/api_docs#getnotary)        
+    * [GetVersion](api/api_docs#GetVersion)        
+    * [PrepareSignature](api/api_docs#preparesignature)        
+    * [FinalizeSignature](api/api_docs#finalizesignature)        
+    * [MobileCreateSignature](api/api_docs#mobilecreatesignature)        
+    * [GetMobileCreateSignatureStatus](api/api_docs#getmobilecreatesignaturestatus)        
+    * [GetMobileCertificate](api/api_docs#getmobilecertificate)        
+    * [MobileSignHash](api/api_docs#mobilesighhash)        
+    * [GetMobileSignHashStatusRequest](api/api_docs#getmobilesignhashstatusrequest)        
+* [Data structures](api/api_docs)        
+    * [SignedDocInfo](api/api_docs#signeddocinfo)        
+    * [CertificateInfo](api/api_docs#certificateinfo)       
+    * [DataFileInfo](api/api_docs#datafileinfo)        
+    * [SOAP Error Messages](api/api_docs#soap-error-messages)        
+    * [Container validation](api/api_docs#container-validation)        
 * [Service Change History](service_change_history)        
 
 
@@ -176,7 +176,7 @@ RSA is commonly used with either 1024-bit or 2048-bit keys. ECDSA is implemented
 
 ## Verification of the digitally signed file
 
-In need of verifying a digitally signed document the easiest way is to use the StartSession request (described in chapter 8.1) valuing the SigDocXML parameter. If the only purpose is getting the overview of the content of DigiDoc and no further signing or certificate reading is intended, the StartSession request should be called with the parameter bHoldSession value set to false. In this case no further session closing is necessary. The StartSession request returns the signed document information as a structure of SignedDocInfo, where all the necessary parameters the signed document are readable.
+In need of verifying a digitally signed document the easiest way is to use the StartSession request (described in [StartSession](api/api_docs#startsession)) valuing the SigDocXML parameter. If the only purpose is getting the overview of the content of DigiDoc and no further signing or certificate reading is intended, the StartSession request should be called with the parameter bHoldSession value set to false. In this case no further session closing is necessary. The StartSession request returns the signed document information as a structure of SignedDocInfo, where all the necessary parameters the signed document are readable.
 
 ![StartSession diagram](img/start_session.png)
 
@@ -236,7 +236,7 @@ An application sends to the service either
 3. the entire container to be signed
 4. the container to be signed without the bodi(es) of datafile(s) (all the content between the DataFile tags has been removed)
 
-The ways of sending the data necessary for signing are described more precisely in chapter 8.1. Data received within the StartSession request is saved in the session.
+The ways of sending the data necessary for signing are described more precisely in [StartSession](api/api_docs#startsession). Data received within the StartSession request is saved in the session.
 
 1. SessionCode is returned to the application, what enables the following procedures with the session data.
 2. Before signing the application may add supplementary data files (AddDataFile request) or remove some datafiles (RemoveDataFile request) or carry out some other procedures with session data.
@@ -319,7 +319,8 @@ All those methods accept Mobile-ID user's Personal Identification Code and phone
 
 If you would like to provide Mobile-ID operations for Lithuanian Mobile-ID users in your application then both input parameters are mandatory: user's Personal Identification Code and phone number. Otherwise the request fails.
 
-**NB! It is highly recommended to use both input parameters - Mobile-ID user's Personal Identification Code and phone number also for Estonian Mobile-ID users. The requirement is planned to be turned obligatory in the future.**
+> **NB!** It is highly recommended to use both input parameters - Mobile-ID user's Personal Identification Code and phone number also for 
+> Estonian Mobile-ID users. The requirement is planned to be turned obligatory in the future.
 
 Using only phone number is not recommended when security is a concern, because phone numbers are public and Mobile-ID users may get spammed.
 
@@ -339,7 +340,7 @@ Challenge number should be correctly implemented and highly visible also when Mo
 
 - Web applications, that enable authentication or digital signing using Mobile-ID or ID-card, should use encrypted channel (HTTPS) between browser and web server.
 - Mobile-ID-enabled web applications, when polling regularly DigiDocService with requests about operation state information (whether user has already entered his/her PIN number and signing/authenticating is completed or not), should, for usability reasons, not reload web page every time request is made to DigiDocService – using Ajax is recommended.
-- The file size is limited to 4 MB. Section 8.1 describes how to send larger-scale files to the Service.
+- The file size is limited to 4 MB. [StartSession](api/api_docs#startsession) describes how to send larger-scale files to the Service.
 
 
 

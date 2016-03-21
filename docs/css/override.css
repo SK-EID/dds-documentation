@@ -6,3 +6,48 @@ img {
     width: 100%;
     height: auto;
 }
+
+footer > hr {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.navbar-default {
+    background-color: #bf3e11;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:hover, 
+.navbar-default .navbar-nav>.open>a:focus {
+    background-color: #bf3e11;
+}
+
+.navbar-nav li.dropdown>a:hover, 
+.navbar-default .dropdown-menu>li>a:hover, 
+.navbar-default .dropdown-menu>.active>a, 
+.navbar-default .dropdown-menu>.active>a:hover {
+    background-color: #bf3e11;
+}
+
+.navbar-default .dropdown-menu>.active>a  {
+    font-weight: bold;
+}
+
+.navbar-default .dropdown-menu>li>a:hover, 
+.navbar-default .dropdown-menu>.active>a:hover {
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus {
+    background-color: #bf3e11;
+}
+
+.navbar-default .dropdown-menu {
+    background-color: #bf3e11;
+}
+ 
+.small-brand-text {
+    font-size: 70%;
+}

@@ -21,6 +21,21 @@ footer > hr {
     margin-bottom: 15px;
 }
 
+li.second-level {
+    font-weight: normal;
+    list-style: none;
+    margin-left: 0;
+}
+
+li.second-level a:hover {
+    text-decoration: none;
+}
+
+ul.second-level {
+    margin: 0;
+    padding-left: 20px;
+}
+
 .navbar-default {
     background-color: #dd4814;
     border: 1px solid #bf3e11;

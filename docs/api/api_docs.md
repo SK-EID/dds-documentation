@@ -676,7 +676,7 @@ GetStatusInfo request is for getting the information about the document in sessi
 
 ## GetSignedDocInfo
 
-The GetSignedDocInfo method shall be used to retrieve status information and the actual (signed) document from the current signing session.
+The GetSignedDocInfo method shall be used to retrieve status information from the (signed) document in current signing session.
 
 #### Request
 
@@ -695,6 +695,8 @@ The GetSignedDocInfo method shall be used to retrieve status information and the
 ## GetSignedDoc
 
 A signed document is returned from the webservice within the GetSignedDoc request. The content of the document is in HTMLencoded format. If there's a will to receive the document information in structured format in addition to signed document, the GetSignedDocInfo request should be used.
+
+In case of BDOC-TS container, it has to contain at least one signature in order to obtain it, otherwise an error will be thrown.
 
 #### Request
 

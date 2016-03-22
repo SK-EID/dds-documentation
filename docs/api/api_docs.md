@@ -247,6 +247,10 @@ To use this HASHCODE mode, the DigiDoc or BDOC-container should be converted to 
 
 #### BDOC format and HASHCODE
 
+> **Note!** Hashcode is currently supported only for BDOC-TM.
+
+> Support for BDOC-TS will be added in the future.
+
 #### Transforming a BDOC container to HASHCODE form
 
 Given the BDOC format, the container should be transformed to the HASCODE form in the following steps (before sending it to the DigiDocService):
@@ -452,7 +456,7 @@ Now the file is ready for digital signing.
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 | Version        | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
-| SigningProfile | String  |   | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)               |
+| SigningProfile | String  | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)               |
 |                |         |   |   and DDOC. ``LT_TM`` is currently the default option.                                                        |
 |                |         |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS signatures (BDOC with time-stamp / ASiC-E);          |
 |                |         |   | it is supported for the BDOC container format                                                                 |
@@ -578,7 +582,7 @@ In case creation of "pure" mobile signature is needed – i.e. without creating 
 | CountryName                       | String    | - | Name of the country, where it's signed. Optional.                                        |
 +-----------------------------------+-----------+---+------------------------------------------------------------------------------------------+
 | SigningProfile                    | String    | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature          |
-|                                   |           |   |   with time-mark) and DDOC. ``LT_TM`` is currently the default option.                   |
+|                                   |           |   |   with time-mark) and DDOC.                                                              |
 |                                   |           |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E) | 
 |                                   |           |   |   signatures.                                                                            |
 +-----------------------------------+-----------+---+------------------------------------------------------------------------------------------+
@@ -919,7 +923,7 @@ As a result of the request a new so called half-done signature is added to the D
 | Country               | String            | - | Name of the country, where it's signed.                                                               |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 | SigningProfile        | String            | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)       | 
-|                       |                   |   |   and DDOC. ``LT_TM`` is currently the default option.                                                |
+|                       |                   |   |   and DDOC.                                                                                           |
 |                       |                   |   | * ``LT`` (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E) signatures.  |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 
@@ -1196,7 +1200,7 @@ This operation starts the process of signing a hash using Mobile-ID. It is meant
 
 If it is necessary to fetch signer's certificate before signing (for example, to incorporate the certificate in the document prior to signing), the GetMobileCertificate operation can be used.
 
-This operation locates the signer's certificate, fetches an OCSP response and sends the signing request to the signer's mobile device. An active session is not required.
+This operation locates the signer's certificate and sends the signing request to the signer's mobile device (since 3.10 MobileSignHash doesn't request for OCSP). An active session is not required.
 
 The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.
 

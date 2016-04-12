@@ -1356,10 +1356,6 @@ Presents the structure of a DigiDoc file (container).
         <Size xsi:type="xsd:int">0</Size>
         <DigestType xsi:type="xsd:string"></DigestType>
         <DigestValue xsi:type="xsd:string"></DigestValue>
-        <Attributes xsi:type="d:DataFileAttribute">
-            <name xsi:type="xsd:string"></name>
-            <value xsi:type="xsd:string"></value>
-        </Attributes>
     </DataFileInfo>
     <SignatureInfo xsi:type="d:SignatureInfo">
         <Id xsi:type="xsd:string"></Id>
@@ -1462,7 +1458,6 @@ The given data structure describes the information of the data file(s) inside Di
 - **Size** – The actual size of file in bytes.
 - **DigestType** - Hashcode type of the data file. In case of DIGIDOC-XML format the form currently supported algorithm is "sha1", in case of BDOC format the supported algorithm is "sha256". Required for HASHCODE content type only.
 - **DigestValue** – The value of data file's hash\* in Base64 encoding. Required for HASHCODE content type only.
-- **Attributes** - Arbitrary amount of other attributes (meta data), what's add to <Datafile> element in DigiDoc file as attributes (in format <name>="<value>").
 - **DfData** - Data file content in Base64 encoding.
 
 \* See example, how to calculate hash over data file and send it to the service from [StartSession](#startsession) 

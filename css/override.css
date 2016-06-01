@@ -1,0 +1,72 @@
+li.third-level  {
+    display: none;
+}
+
+a {
+    color: #DD481B;
+}
+
+.bs-sidenav a:hover {
+    color: #bf3e11;
+    font-weight: bold;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+footer > hr {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+footer {
+    margin-bottom: 15px;
+}
+
+li.second-level {
+    font-weight: normal;
+    list-style: none;
+    margin-left: 0;
+}
+
+li.second-level a:hover {
+    text-decoration: none;
+}
+
+ul.second-level {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.navbar-default {
+    background-color: #dd4814;
+    border: 1px solid #bf3e11;
+}
+
+.navbar-default ul.navbar-nav li:hover, 
+.navbar-default ul.navbar-nav li > a:hover, 
+.navbar-default ul.navbar-nav li > a:focus {
+    background-color: #bf3e11;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:hover, 
+.navbar-default .navbar-nav>.open>a:focus {
+    background-color: #bf3e11;
+}
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus {
+    background-color: #bf3e11;
+}
+
+.navbar-default .dropdown-menu {
+    background-color: #bf3e11;
+}
+ 
+.small-brand-text {
+    font-size: 70%;
+}

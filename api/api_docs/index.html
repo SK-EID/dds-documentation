@@ -991,7 +991,7 @@ request parameter ReturnRevocationData has been set to TRUE, otherwise empty str
 <td>SigningProfile</td>
 <td>String</td>
 <td>-</td>
-<td>This value is currently ignored and may be empty.</td>
+<td>This value is currently ignored and may be empty. <br/> <strong>PS! This parameter is deprecated and exists only due to historical reasons. <code>SigningProfile</code> is identified by the service itself when a container is provided with <code>&lt;SigDocXml&gt;</code> parameter. <br/> It is recommended not to use <code>SigningProfile</code> parameter as it will be removed in the future!</strong></td>
 </tr>
 <tr>
 <td>SigDocXML</td>
@@ -1047,6 +1047,10 @@ request parameter ReturnRevocationData has been set to TRUE, otherwise empty str
 <p>Normally, a size limit of 4 MB applies to digitally signed containers and data files sent to DigiDocService. To use bigger files, a "HASHCODE" mode of operation is supported by DigiDocService, where only hashes of data files are sent to the server (in other words, file contents are not sent to the service). This can also improve performance for large data files, as sending bigger files over network can take time.</p>
 <p>To use this HASHCODE mode, the DigiDoc or BDOC-container should be converted to the HASHCODE form before sending it to the service. (In this form, the data file contents are replaced with their hash values.) Similarly, when the container is returned by the service, it should be converted back to regular form by inserting back the data file contents. Thus, in the end, the application provider still has a regular container that can be verified by standard tools (i.e., the DigiDoc3 client software). The exact form of HASHCODE depends on the particular format used (DDOC or BDOC).</p>
 <h4 id="bdoc-format-and-hashcode">BDOC format and HASHCODE</h4>
+<blockquote>
+<p><strong>Note!</strong> Hashcode is currently supported only for BDOC-TM.</p>
+<p>Support for BDOC-TS will be added in the future.</p>
+</blockquote>
 <h4 id="transforming-a-bdoc-container-to-hashcode-form">Transforming a BDOC container to HASHCODE form</h4>
 <p>Given the BDOC format, the container should be transformed to the HASCODE form in the following steps (before sending it to the DigiDocService):</p>
 <ol>
@@ -1235,35 +1239,72 @@ Now the file is ready for digital signing.</p>
 <table>
 <thead>
 <tr>
-<th><strong>Parameter</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>R</strong></th>
-<th><strong>Description</strong></th>
+<th colspan="1" rowspan="1">
+<p>Parameter</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>Type</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>R</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>Description</p>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sesscode</td>
-<td>Integer</td>
-<td>+</td>
-<td>An identifier of the active session.</td>
+<td colspan="1" rowspan="1">
+<p>Format</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>An identifier of the active session.</p>
+</td>
 </tr>
 <tr>
-<td>Format</td>
-<td>String</td>
-<td>+</td>
-<td>a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1)</td>
+<td colspan="1" rowspan="1">
+<p>Version</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1)</p>
+</td>
 </tr>
 <tr>
-<td>Version</td>
-<td>String</td>
-<td>+</td>
-<td>a version number of the format of a creatable document container (currently the supported versions for DIGIDOC-XML is 1.3 and BDOC 2.1)</td>
+<td colspan="1" rowspan="1">
+<p>SigningProfile</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>-</p>
+</td>
+<td colspan="1" rowspan="1">
+<ul>
+<li><code>LT_TM</code> (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)
+  and DDOC. <code>LT_TM</code> is currently the default option.</li>
+<li><code>LT</code> (Long Term): Used for creating standard BDOC-TS signatures (BDOC with time-stamp / ASiC-E);
+it is supported for the BDOC container format</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>NB!</strong> Only container formats DIGIDOC-XML 1.3 and BDOC 2.0 are supported. If an inappropriate combination of given 
+<p><strong>NB!</strong> Only container formats DIGIDOC-XML 1.3 and BDOC 2.1 are supported. If an inappropriate combination of given 
 format and version number is used in request parameters, a SOAP error object with error message "Invalid format and version combination!" will be returned.</p>
 </blockquote>
 <p>The description of DigiDoc formats are available on the webpage <a href="http://www.id.ee/index.php?id=36108">http://www.id.ee/index.php?id=36108</a> .</p>
@@ -1692,13 +1733,9 @@ in uppercase is used (for example <code>EST</code>, <code>ENG</code>, <code>RUS<
 <td colspan="1" rowspan="1">
 <ul>
 <li><code>LT_TM</code> (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature
-  with time-mark) and DDOC. "LT_TM" is currently the default option.</li>
-<li><code>LT</code> (Long Term): Used for creating standard BDOC-TS
-  (BDOC with time-stamp / ASiC-E) signatures. Currently it is a reserved value
-  that simply returns the error code 101 with the following message: "BDOC-TS signature
-  format is not supported in the current service version. For signing BDOC files with
-  Mobile-ID, please use BDOC-TM format". Support for the "LT" profile is planned for
-  future releases of the service.</li>
+  with time-mark) and DDOC.</li>
+<li><code>LT</code> (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E)
+  signatures.</li>
 </ul>
 </td>
 </tr>
@@ -1944,7 +1981,7 @@ then <code>SignedDocInfo</code> structure will be returned in the format dessrib
 </tbody>
 </table>
 <h2 id="getsigneddocinfo">GetSignedDocInfo</h2>
-<p>The GetSignedDocInfo method shall be used to retrieve status information and the actual (signed) document from the current signing session.</p>
+<p>The GetSignedDocInfo method shall be used to retrieve status information from the (signed) document in current signing session.</p>
 <h4 id="request_1">Request</h4>
 <table>
 <thead>
@@ -1988,6 +2025,7 @@ then <code>SignedDocInfo</code> structure will be returned in the format dessrib
 </table>
 <h2 id="getsigneddoc">GetSignedDoc</h2>
 <p>A signed document is returned from the webservice within the GetSignedDoc request. The content of the document is in HTMLencoded format. If there's a will to receive the document information in structured format in addition to signed document, the GetSignedDocInfo request should be used.</p>
+<p>In case of BDOC-TS container, it has to contain at least one signature in order to obtain it, otherwise an error will be thrown.</p>
 <h4 id="request_2">Request</h4>
 <table>
 <thead>
@@ -2540,12 +2578,8 @@ within reading the signer's certificate and forwards it to the signing applicati
 <td colspan="1" rowspan="1">
 <ul>
 <li><code>LT_TM</code> (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)
-  and DDOC. <code>LT_TM</code> is currently the default option.</li>
-<li><code>LT</code> (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E)
-  signatures. Currently it is a reserved value that simply returns the error code 101 with the
-  following message: "BDOC-TS signature format is not supported in the current service version. For
-  signing BDOC files with Mobile-ID, please use BDOC-TM format". Support for the "LT" profile is
-  planned for future releases of the service.</li>
+  and DDOC.</li>
+<li><code>LT</code> (Long Term): Used for creating standard BDOC-TS (BDOC with time-stamp / ASiC-E) signatures.</li>
 </ul>
 </td>
 </tr>
@@ -3327,7 +3361,7 @@ returned in any case):</p>
 <h2 id="mobilesignhash">MobileSignHash</h2>
 <p>This operation starts the process of signing a hash using Mobile-ID. It is meant for signing document formats other than DDOC and BDOC (for example: PDF, ADOC, etc.) For BDOC and DDOC formats, it is recommended to use the MobileCreateSignature and MobileSign operations.</p>
 <p>If it is necessary to fetch signer's certificate before signing (for example, to incorporate the certificate in the document prior to signing), the GetMobileCertificate operation can be used.</p>
-<p>This operation locates the signer's certificate, fetches an OCSP response and sends the signing request to the signer's mobile device. An active session is not required.</p>
+<p>This operation locates the signer's certificate and sends the signing request to the signer's mobile device (since 3.10 MobileSignHash doesn't request for OCSP). An active session is not required.</p>
 <p>The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.</p>
 <p>This operation is using the document/literal style and is accessible from a new sub-address /v2/?wsdl.  New version of the service uses a separate WSDL, and error message format has been updated (see <a href="#soap-error-messages">SOAP Error messages</a>).</p>
 <blockquote>
@@ -3622,10 +3656,6 @@ on the returned certificate in the "CertificateData" field.</p>
         &lt;Size xsi:type=&quot;xsd:int&quot;&gt;0&lt;/Size&gt;
         &lt;DigestType xsi:type=&quot;xsd:string&quot;&gt;&lt;/DigestType&gt;
         &lt;DigestValue xsi:type=&quot;xsd:string&quot;&gt;&lt;/DigestValue&gt;
-        &lt;Attributes xsi:type=&quot;d:DataFileAttribute&quot;&gt;
-            &lt;name xsi:type=&quot;xsd:string&quot;&gt;&lt;/name&gt;
-            &lt;value xsi:type=&quot;xsd:string&quot;&gt;&lt;/value&gt;
-        &lt;/Attributes&gt;
     &lt;/DataFileInfo&gt;
     &lt;SignatureInfo xsi:type=&quot;d:SignatureInfo&quot;&gt;
         &lt;Id xsi:type=&quot;xsd:string&quot;&gt;&lt;/Id&gt;
@@ -3727,7 +3757,6 @@ on the returned certificate in the "CertificateData" field.</p>
 <li><strong>Size</strong> – The actual size of file in bytes.</li>
 <li><strong>DigestType</strong> - Hashcode type of the data file. In case of DIGIDOC-XML format the form currently supported algorithm is "sha1", in case of BDOC format the supported algorithm is "sha256". Required for HASHCODE content type only.</li>
 <li><strong>DigestValue</strong> – The value of data file's hash* in Base64 encoding. Required for HASHCODE content type only.</li>
-<li><strong>Attributes</strong> - Arbitrary amount of other attributes (meta data), what's add to <Datafile> element in DigiDoc file as attributes (in format <name>="<value>").</li>
 <li><strong>DfData</strong> - Data file content in Base64 encoding.</li>
 </ul>
 <p>* See example, how to calculate hash over data file and send it to the service from <a href="#startsession">StartSession</a> </p>
@@ -3870,7 +3899,7 @@ on the returned certificate in the "CertificateData" field.</p>
             
             
                 <small>
-                    Last update: <strong>22.01.2016</strong>
+                    Last update: <strong>22.03.2016</strong>
                 </small>
             
         </div>

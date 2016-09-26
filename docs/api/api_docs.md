@@ -1289,6 +1289,16 @@ If method call-up will result with an error, a SOAP error object will be returne
 
 # Data structures
 
+> **NB!** When sending requests, special characters in XML element value must be escaped!  
+
+| **Special character** | **Convert to** |
+| --- | --- |
+| `"` | `&quot;` |
+| `'` | `&apos;` |
+| `<` | `&lt;` |
+| `>` | `&gt;` |
+| `&` | `&amp;` |
+
 ## SignedDocInfo
 
 Presents the structure of a DigiDoc file (container).

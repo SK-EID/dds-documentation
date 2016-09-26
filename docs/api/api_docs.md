@@ -646,7 +646,9 @@ GetStatusInfo request is for getting the information about the document in sessi
 +-------------------+-------------------+-----------------------------------------------------------------------------------------------+
 | Parameter         | Type              | Description                                                                                   |
 +===================+===================+===============================================================================================+
-| Status            | String            | Status of the mobile signing process:                                                         |
+| Status            | String            | Status code of the last request. In case of successful request, "OK" or an error string.      |
++-------------------+-------------------+-----------------------------------------------------------------------------------------------+
+| StatusCode        | String            | Status of the mobile signing process:                                                         |
 |                   |                   |                                                                                               |
 |                   |                   | * ``REQUEST_OK`` – initial message was received;                                              |
 |                   |                   | * ``EXPIRED_TRANSACTION`` – timeout – the user did not enter the signing                      |
@@ -663,8 +665,6 @@ GetStatusInfo request is for getting the information about the document in sessi
 |                   |                   | * ``SIM_ERROR`` – SIM application error;                                                      |
 |                   |                   | * ``REVOKED CERTIFICATE`` – certificate status revoked;                                       |
 |                   |                   | * ``INTERNAL_ERROR`` – technical error,                                                       |
-+-------------------+-------------------+-----------------------------------------------------------------------------------------------+
-| StatusCode        | String            | Status code of the last request. In case of successful request, "OK" or an error string.      |
 +-------------------+-------------------+-----------------------------------------------------------------------------------------------+
 | SignedDocInfo     | SignedDocInfo     | If "ReturnDocInfo" parameter in the GetSignedDocInfo request was set "true"                   | 
 |                   |                   | then ``SignedDocInfo`` structure will be returned in the format dessribed in                  |

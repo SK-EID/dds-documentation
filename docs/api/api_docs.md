@@ -1312,8 +1312,8 @@ Presents the structure of a DigiDoc file (container).
             ``WARNING`` – A warning from the DigiDoc library. Legally, the signature is valid, but additional changes are not allowed in the container. For more information, see [Container validation](#container-validation).  
         * **description –** Error description in English.
     * **SigningTime** – Local time (for example, time of the signer's computer, time of signing web server) of signing according to the "
-      The W3C note _Date and Time Formats"_ [5]. NB! This is not the official time of signing, the official time is defined in current structure 
-      element _Confirmation-> ProducedAt_.
+      The W3C note _Date and Time Formats"_ [5]. NB! This is not the official time of signing. The official time is defined for DDOC and BDOC-TM in current structure
+      element _Confirmation-> ProducedAt_ and for BDOC-TS/ASiC-E in current structure element _Timestamps-> GenerationTime_.
     * **SignerRole** - The role or resolution marked by the signer at signing. Assigned by following attributes:
         * **Certified** - Defines, whether the role has been assigned by the signer itself or by the CA. Only user-defined roles are in use currently, where the parameter value is 0.
         * **Role** - The text of the role or resolution.

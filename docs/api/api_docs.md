@@ -1323,7 +1323,7 @@ Presents the structure of a DigiDoc file (container).
         * **description –** Error description in English.
     * **SigningTime** – Local time (for example, time of the signer's computer, time of signing web server) of signing according to the "
       The W3C note _Date and Time Formats"_ [5]. NB! This is not the official time of signing. The official time is defined for DDOC and BDOC-TM in current structure
-      element _Confirmation-> ProducedAt_ and for BDOC-TS/ASiC-E in current structure element _Timestamps-> GenerationTime_.
+      element _Confirmation-> CreationTime_ and for BDOC-TS/ASiC-E in current structure element _Timestamps-> CreationTime_.
     * **SignerRole** - The role or resolution marked by the signer at signing. Assigned by following attributes:
         * **Certified** - Defines, whether the role has been assigned by the signer itself or by the CA. Only user-defined roles are in use currently, where the parameter value is 0.
         * **Role** - The text of the role or resolution.

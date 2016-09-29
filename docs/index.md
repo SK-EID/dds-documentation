@@ -45,7 +45,7 @@
     * [GetSignersCertificate](api/api_docs/#getsignerscertificate)
     * [GetNotarysCertificate](api/api_docs/#getnotaryscertificate)
     * [GetNotary](api/api_docs/#getnotary)
-    * [GetVersion](api/api_docs/#GetVersion)
+    * [GetVersion](api/api_docs/#getversion)
     * [PrepareSignature](api/api_docs/#preparesignature)
     * [FinalizeSignature](api/api_docs/#finalizesignature)
     * [MobileCreateSignature](api/api_docs/#mobilecreatesignature)

@@ -1934,6 +1934,17 @@ user's phone arrives earlier because of technical and human limitations. Mobile-
 <p>String</p>
 </td>
 <td colspan="1" rowspan="1">
+<p>Status code of the last request. In case of successful request, "OK" or an error string.</p>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>StatusCode</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
 <p>Status of the mobile signing process:</p>
 <ul>
 <li><code>REQUEST_OK</code> – initial message was received;</li>
@@ -1952,17 +1963,6 @@ user's phone arrives earlier because of technical and human limitations. Mobile-
 <li><code>REVOKED CERTIFICATE</code> – certificate status revoked;</li>
 <li><code>INTERNAL_ERROR</code> – technical error,</li>
 </ul>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>StatusCode</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>String</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Status code of the last request. In case of successful request, "OK" or an error string.</p>
 </td>
 </tr>
 <tr>
@@ -3578,6 +3578,39 @@ on the returned certificate in the "CertificateData" field.</p>
 </table>
 <p>If method call-up will result with an error, a SOAP error object will be returned according to the description in <a href="#soap-error-messages">SOAP Error messages</a>.</p>
 <h1 id="data-structures">Data structures</h1>
+<blockquote>
+<p><strong>NB!</strong> When sending requests, special characters in XML element value must be escaped!  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>Special character</strong></th>
+<th><strong>Convert to</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"</code></td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td><code>'</code></td>
+<td><code>&amp;apos;</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td><code>&amp;lt;</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="signeddocinfo">SignedDocInfo</h2>
 <p>Presents the structure of a DigiDoc file (container).</p>
 <ul>
@@ -3602,8 +3635,8 @@ on the returned certificate in the "CertificateData" field.</p>
 </ul>
 </li>
 <li><strong>SigningTime</strong> – Local time (for example, time of the signer's computer, time of signing web server) of signing according to the "
-  The W3C note <em>Date and Time Formats"</em> [5]. NB! This is not the official time of signing, the official time is defined in current structure 
-  element <em>Confirmation-&gt; ProducedAt</em>.</li>
+  The W3C note <em>Date and Time Formats"</em> [5]. NB! This is not the official time of signing. The official time is defined for DDOC and BDOC-TM in current structure
+  element <em>Confirmation-&gt; ProducedAt</em> and for BDOC-TS/ASiC-E in current structure element <em>Timestamps-&gt; CreationTime</em>.</li>
 <li><strong>SignerRole</strong> - The role or resolution marked by the signer at signing. Assigned by following attributes:<ul>
 <li><strong>Certified</strong> - Defines, whether the role has been assigned by the signer itself or by the CA. Only user-defined roles are in use currently, where the parameter value is 0.</li>
 <li><strong>Role</strong> - The text of the role or resolution.</li>

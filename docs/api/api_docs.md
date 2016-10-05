@@ -443,8 +443,8 @@ If the request is unsuccessful, a SOAP-FAULT object will be returned.
 
 ## CreateSignedDoc
 
-If an application desires to define the format and version of the formable conteiner, the CreateSignedDoc request will be used for 
-creating a new conteiner. After the CreateSignedDoc request takes place the AddDataFile request for adding the data. 
+If an application desires to define the format and version of the formable container, the CreateSignedDoc request will be used for 
+creating a new container. After the CreateSignedDoc request takes place the AddDataFile request for adding the data. 
 Now the file is ready for digital signing.
 
 #### Query
@@ -452,9 +452,12 @@ Now the file is ready for digital signing.
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 | Parameter      | Type    | R | Description                                                                                                   |
 +================+=========+===+===============================================================================================================+
-| Format         | String  | + | An identifier of the active session.                                                                          |
+| Sesscode       | Integer | + | An identifier of the active session.                                                                          |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
-| Version        | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |
+| Format         | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |                                                                         |
++----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
+| Version        | String  | + | a version number of the format of a creatable document container                                              |
+|                |         |   | (currently the supported versions for DIGIDOC-XML is 1.3 and BDOC 2.1)                                        |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 | SigningProfile | String  | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)               |
 |                |         |   |   and DDOC. ``LT_TM`` is currently the default option.                                                        |

@@ -1232,8 +1232,8 @@ DigestValue=&quot;t8eRSrKTgR4PAAKTLYWGCjuTSJA=&quot;
 </table>
 <p>If the request is unsuccessful, a SOAP-FAULT object will be returned.</p>
 <h2 id="createsigneddoc">CreateSignedDoc</h2>
-<p>If an application desires to define the format and version of the formable conteiner, the CreateSignedDoc request will be used for 
-creating a new conteiner. After the CreateSignedDoc request takes place the AddDataFile request for adding the data. 
+<p>If an application desires to define the format and version of the formable container, the CreateSignedDoc request will be used for 
+creating a new container. After the CreateSignedDoc request takes place the AddDataFile request for adding the data. 
 Now the file is ready for digital signing.</p>
 <h4 id="query_4">Query</h4>
 <table>
@@ -1256,10 +1256,10 @@ Now the file is ready for digital signing.</p>
 <tbody>
 <tr>
 <td colspan="1" rowspan="1">
-<p>Format</p>
+<p>Sesscode</p>
 </td>
 <td colspan="1" rowspan="1">
-<p>String</p>
+<p>Integer</p>
 </td>
 <td colspan="1" rowspan="1">
 <p>+</p>
@@ -1270,7 +1270,7 @@ Now the file is ready for digital signing.</p>
 </tr>
 <tr>
 <td colspan="1" rowspan="1">
-<p>Version</p>
+<p>Format</p>
 </td>
 <td colspan="1" rowspan="1">
 <p>String</p>
@@ -1279,7 +1279,25 @@ Now the file is ready for digital signing.</p>
 <p>+</p>
 </td>
 <td colspan="1" rowspan="1">
-<p>a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1)</p>
+<p>a format of a document container to be created (currently supported formats are DIGIDOC-XML and BDOC)</p>
+</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1">
+<p>Version
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>a version number of the format of a creatable document container
+(currently supported version for DIGIDOC-XML is 1.3 and for BDOC 2.1)</p>
 </td>
 </tr>
 <tr>

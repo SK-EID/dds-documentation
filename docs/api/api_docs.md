@@ -454,10 +454,10 @@ Now the file is ready for digital signing.
 +================+=========+===+===============================================================================================================+
 | Sesscode       | Integer | + | An identifier of the active session.                                                                          |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
-| Format         | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML 1.3 and BDOC 2.1) |                                                                         |
+| Format         | String  | + | a format of a document container to be created (currently supported formats are DIGIDOC-XML and BDOC)         |                                                                         |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 | Version        | String  | + | a version number of the format of a creatable document container                                              |
-|                |         |   | (currently the supported versions for DIGIDOC-XML is 1.3 and BDOC 2.1)                                        |
+|                |         |   | (currently supported version for DIGIDOC-XML is 1.3 and for BDOC 2.1)                                         |
 +----------------+---------+---+---------------------------------------------------------------------------------------------------------------+
 | SigningProfile | String  | - | * ``LT_TM`` (Long Term with Time Mark): a profile for BDOC-TM (a BDOC signature with time-mark)               |
 |                |         |   |   and DDOC. ``LT_TM`` is currently the default option.                                                        |

@@ -165,8 +165,6 @@ Additionally, this operation returns the values of the most important fields fro
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
 | Parameter             | Type              | Description                                                                                           |
 +=======================+===================+=======================================================================================================+
-| Sesscode              | Integer           | Identifier of the created session                                                                     |
-+-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
 | Status                | String            | Certificate's validity information:                                                                   | 
 |                       |                   |                                                                                                       | 
 |                       |                   | * ``GOOD`` – certificate is valid                                                                     |
@@ -192,15 +190,15 @@ Additionally, this operation returns the values of the most important fields fro
 | UserCN                | String            | Certificate owner's common name, this value will be taken from certificate subject's                  | 
 |                       |                   | CN (Common name) field.                                                                               |
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
-| Issuer                | String            | Certificate issuer's common name, this value will be taken from certificate issuers's                 | 
+| IssuerCN              | String            | Certificate issuer's common name, this value will be taken from certificate issuers's                 | 
 |                       |                   | CN (Common name) field.                                                                               |
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
 | KeyUsage              | String            | Usage of the (secret) key related to the certificate.                                                 |
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
 | EnhancedKeyUsage      | String            | Enhanced key usage                                                                                    |
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
-| RevocationData        | String            | Certificate's validity information (OCSP service's response) in Base64 format. Returned only if       | 
-|                       |                   | request parameter ReturnRevocationData has been set to TRUE, otherwise empty string is returned.      |
+| RevocationData        | String            | Certificate's validity information (OCSP service's response) in Base64 format. This response          | 
+|                       |                   | parameter is only present when ReturnRevocationData request parameter has been set to TRUE.           |
 +-----------------------+-------------------+-------------------------------------------------------------------------------------------------------+
 
 Response parameters are all UTF-8 encoded.

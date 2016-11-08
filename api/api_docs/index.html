@@ -806,17 +806,6 @@ arrives earlier because of technical and human limitations. Mobile-ID transactio
 <tbody>
 <tr>
 <td colspan="1" rowspan="1">
-<p>Sesscode</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Integer</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Identifier of the created session</p>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
 <p>Status</p>
 </td>
 <td colspan="1" rowspan="1">
@@ -916,7 +905,7 @@ CN (Common name) field.</p>
 </tr>
 <tr>
 <td colspan="1" rowspan="1">
-<p>Issuer
+<p>IssuerCN
 </p>
 </td>
 <td colspan="1" rowspan="1">
@@ -960,8 +949,8 @@ CN (Common name) field.</p>
 </p>
 </td>
 <td colspan="1" rowspan="1">
-<p>Certificate's validity information (OCSP service's response) in Base64 format. Returned only if
-request parameter ReturnRevocationData has been set to TRUE, otherwise empty string is returned.</p>
+<p>Certificate's validity information (OCSP service's response) in Base64 format. This response
+parameter is only present when ReturnRevocationData request parameter has been set to TRUE.</p>
 </td>
 </tr>
 </tbody>
@@ -3381,7 +3370,7 @@ returned in any case):</p>
 <p>If it is necessary to fetch signer's certificate before signing (for example, to incorporate the certificate in the document prior to signing), the GetMobileCertificate operation can be used.</p>
 <p>This operation locates the signer's certificate and sends the signing request to the signer's mobile device (since 3.10 MobileSignHash doesn't request for OCSP). An active session is not required.</p>
 <p>The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.</p>
-<p>This operation is using the document/literal style and is accessible from a new sub-address /v2/?wsdl.  New version of the service uses a separate WSDL, and error message format has been updated (see <a href="#soap-error-messages">SOAP Error messages</a>).</p>
+<p>This operation is using the document/literal style and is accessible from <a href="https://digidocservice.sk.ee/v2/mid.wsdl">https://digidocservice.sk.ee/v2/mid.wsdl</a>.  New version of the service uses a separate WSDL, and error message format has been updated (see <a href="#soap-error-messages">SOAP Error messages</a>).</p>
 <blockquote>
 <p><strong>NOTE</strong>: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.</p>
 </blockquote>

@@ -112,7 +112,7 @@
     <ul class="nav bs-sidenav">
     
         <li class="first-level active">
-            <a href="#as-sertifitseerimiskeskus-digidocservice-specification">AS Sertifitseerimiskeskus DigiDocService specification</a>
+            <a href="#sk-id-solutions-as-digidocservice-specification">SK ID Solutions AS DigiDocService specification</a>
             
             <ul class="second-level">
                 
@@ -198,7 +198,7 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="as-sertifitseerimiskeskus-digidocservice-specification">AS Sertifitseerimiskeskus DigiDocService specification</h1>
+<h1 id="sk-id-solutions-as-digidocservice-specification">SK ID Solutions AS DigiDocService specification</h1>
 <h2 id="table-of-contents">Table of contents</h2>
 <!---
 1. Document Versions        
@@ -293,7 +293,7 @@
 <li>Verification of digitally signed files (DigiDoc/BDOC) and validity of signatures</li>
 <li>Hash signing with Mobile-ID.</li>
 </ul>
-<p>Access to the service is created on the basis of an IP address. A contract with Sertifitseerimiskeskus needs to be signed for using the service. The price of using the DigiDocService 
+<p>Access to the service is created on the basis of an IP address. A contract with SK ID Solutions AS needs to be signed for using the service. The price of using the DigiDocService 
 depends on the number of signature and authentication queries per month and on the number of concurrent queries coming from one application.</p>
 <p>DigiDocService supports DigiDoc container formats <code>DIGIDOC-XML 1.3</code> and <code>BDOC 2.1</code> with <code>time-marks</code>. BDOC with <code>time-stamps</code> (<code>BDOC-TS</code>, <code>ASiC-E</code>) format is supported since version 3.8 for 
 using <code>MobileCreateSignature</code> method. Validation of BDOC-TS file format is supported starting from 3.9. Since 3.10 BDOC-TS is fully supported, i.e. support was added for following methods: <code>CreateSignedDoc</code>, <code>AddDataFile</code>, <code>RemoveDataFile</code>, <code>RemoveSignature</code>, <code>PrepareSignature</code>, <code>FinalizeSignature</code>, <code>MobileSign</code>.</p>
@@ -500,7 +500,7 @@ Estonian Mobile-ID users. The requirement is planned to be turned obligatory in 
 <li>Spamming is complicated because Personal Identification Codes are not public</li>
 <li>The user does not necessarily have to enter such data directly: for example, a user name could be tied to a particular combination of personal identification code and a phone number.</li>
 </ul>
-<p>It's mandatory for application providers to prevent spamming (by IP-restrictions or by using input parameters mentioned above), otherwise AS Sertifitseerimiskeskus must limit access to DigiDocService, to guarantee that DigiDocService stays up and running for other application providers that use it.</p>
+<p>It's mandatory for application providers to prevent spamming (by IP-restrictions or by using input parameters mentioned above), otherwise SK ID Solutions AS must limit access to DigiDocService, to guarantee that DigiDocService stays up and running for other application providers that use it.</p>
 <p>Application, that enables users to authenticate or digitally sign documents using Mobile-ID, must clearly present challenge number (ChallengeID parameter in MobileAuthenticate response, see below) to user and warn user to check if challenge number presented by application is the same as challenge number on mobile phone screen. If challenge numbers differ, Mobile-ID operation has to be cancelled.</p>
 <p>Challenge number should be correctly implemented and highly visible also when Mobile-ID operations are used from Mobile device browser.</p>
 <h2 id="technical-suggestions-and-requirements">Technical suggestions and requirements</h2>
@@ -581,5 +581,5 @@ Estonian Mobile-ID users. The requirement is planned to be turned obligatory in 
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-11-08 11:25:05.834053
+Build Date UTC : 2017-07-07 12:01:47.486081
 -->

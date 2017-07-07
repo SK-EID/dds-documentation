@@ -149,7 +149,7 @@ The session will be terminated unless the Status has value OUTSTANDING\_TRANSACT
 
 ## CheckCertificate
 
-Given method can be used to check the validity of certificates (including ID-card and other smartcard certificates and also digital stamp certificates issued by AS Sertifitseerimiskeskus) and number of foreign Certification Authorities. Additional info is available from the sales department of Sertifitseerimiskeskus.
+Given method can be used to check the validity of certificates (including ID-card and other smartcard certificates and also digital stamp certificates issued by SK ID Solutions AS) and number of foreign Certification Authorities. Additional info is available from the sales department of SK ID Solutions AS.
 
 Additionally, this operation returns the values of the most important fields from the certificate.
 

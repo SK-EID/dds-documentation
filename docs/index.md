@@ -1,4 +1,4 @@
-# AS Sertifitseerimiskeskus DigiDocService specification
+# SK ID Solutions AS DigiDocService specification
 
 ## Table of contents
 
@@ -79,7 +79,7 @@ The service is usable in different development environments and platforms featur
 * Verification of digitally signed files (DigiDoc/BDOC) and validity of signatures
 * Hash signing with Mobile-ID.
 
-Access to the service is created on the basis of an IP address. A contract with Sertifitseerimiskeskus needs to be signed for using the service. The price of using the DigiDocService 
+Access to the service is created on the basis of an IP address. A contract with SK ID Solutions AS needs to be signed for using the service. The price of using the DigiDocService 
 depends on the number of signature and authentication queries per month and on the number of concurrent queries coming from one application.
 
 DigiDocService supports DigiDoc container formats ``DIGIDOC-XML 1.3`` and ``BDOC 2.1`` with ``time-marks``. BDOC with ``time-stamps`` (``BDOC-TS``, ``ASiC-E``) format is supported since version 3.8 for 
@@ -329,7 +329,7 @@ Using only phone number is not recommended when security is a concern, because p
 * Spamming is complicated because Personal Identification Codes are not public
 * The user does not necessarily have to enter such data directly: for example, a user name could be tied to a particular combination of personal identification code and a phone number.
 
-It's mandatory for application providers to prevent spamming (by IP-restrictions or by using input parameters mentioned above), otherwise AS Sertifitseerimiskeskus must limit access to DigiDocService, to guarantee that DigiDocService stays up and running for other application providers that use it.
+It's mandatory for application providers to prevent spamming (by IP-restrictions or by using input parameters mentioned above), otherwise SK ID Solutions AS must limit access to DigiDocService, to guarantee that DigiDocService stays up and running for other application providers that use it.
 
 Application, that enables users to authenticate or digitally sign documents using Mobile-ID, must clearly present challenge number (ChallengeID parameter in MobileAuthenticate response, see below) to user and warn user to check if challenge number presented by application is the same as challenge number on mobile phone screen. If challenge numbers differ, Mobile-ID operation has to be cancelled.
 

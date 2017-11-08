@@ -1492,7 +1492,8 @@ A new structure of error objects is being used in the responses of the methods M
 | 100 | General error |
 | 101 | Incorrect input parameters |
 | 102 | Some of required input parameters are missing |
-| 103 | Service provider does not have access to SK validity confirmation service (OCSP response UNAUTHORIZED) |
+| 103 | Client does not have access to external external service, e.g. MSSP or SK validity confirmation service (OCSP response UNAUTHORIZED |
+| 104 | Client is not authorized to access service |
 | 200 | General error of the service |
 | 201 | Missing user certificate |
 | 202 | Unable to verify certificate validity |

@@ -1222,7 +1222,7 @@ This operation is using the document/literal style and is accessible from [https
 |                       |                   |   | (e.g. +3706234566). A match between the phone number and the ID-code will be checked and in case on   |
 |                       |                   |   | non-compliance a SOAP error code 301 will be returned,                                                |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
-| Language              | String(3)         | + | Language of the messages displayed on user's phone. ISO 3166 3-letter codes are being used. Possible  |
+| Language              | String(3)         | + | Language of the messages displayed on user's phone. ISO 639 3-letter codes are being used. Possible   |
 |                       |                   |   | values are: EST, ENG, LIT and RUS.                                                                    |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 | MessageToDisplay      | String(40)        | - | Text displayed in addition to ServiceName and before asking authentication PIN.                       |

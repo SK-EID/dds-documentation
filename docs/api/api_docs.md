@@ -1213,16 +1213,41 @@ This operation is using the document/literal style and is accessible from [https
 
 #### Request
 
-| **Parameter** | **Type** | **R** | **Description** |
-| --- | --- | --- | --- |
-| IDCode | String | + | Personal Identification Code of the user |
-| PhoneNo | String | +  | Phone number of the certificate number complete with the country code in the form +xxxxxxxxx (e.g. +3706234566).A match between the phone number and the ID-code will be checked and in case on non-compliance a SOAP error code 301 will be returned, |
-| Language | String(3) | + | Language of the messages displayed on user's phone. ISO 3166 3-letter codes are being used. Possible values are: EST, ENG, LIT and RUS. |
-| MessageToDisplay | String(40) | - | Text displayed in addition to ServiceName and before asking authentication PIN. Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols. |
-| ServiceName | String(20) | + | Name of the service – previously agreed with Application Provider and DigiDocService operator. Maximum length – 20 chars. |
-| Hash | String(128) | + | A hash to be signed. Transferred as a HEX string. |
-| HashType | Enumeration | + | A hash type to be signed. SHA1, SHA256 and SHA512 hashes are currently supported. |
-| KeyID | String | - | Key type used for signing. RSA and ECC keys are currently supported. |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| Parameter             | Type              | R | Description                                                                                           |
++=======================+===================+===+=======================================================================================================+
+| IDCode                | String            | + | Personal Identification Code of the user                                                              |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| PhoneNo               | String            | + | Phone number of the certificate number complete with the country code in the form +xxxxxxxxx          |
+|                       |                   |   | (e.g. +3706234566). A match between the phone number and the ID-code will be checked and in case on   |
+|                       |                   |   | non-compliance a SOAP error code 301 will be returned,                                                |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| Language              | String(3)         | + | Language of the messages displayed on user's phone. ISO 3166 3-letter codes are being used. Possible  |
+|                       |                   |   | values are: EST, ENG, LIT and RUS.                                                                    |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| MessageToDisplay      | String(40)        | - | Text displayed in addition to ServiceName and before asking authentication PIN.                       |
+|                       |                   |   | Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but   |
+|                       |                   |   | Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols.|
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| ServiceName           | String(20)        | + | Name of the service – previously agreed with Application Provider and DigiDocService operator.        |
+|                       |                   |   | Maximum length – 20 chars.                                                                            |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| Hash                  | String(128)       | + | A hash to be signed. Transferred as a HEX string.                                                     |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| HashType              | Enumeration       | + | A hash type to be signed. SHA1, SHA256 and SHA512 hashes are currently supported.                     |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
+| KeyID                 | String            | - | Key type used for creating signature. Authentication and signature, RSA and ECC keys are currently    |
+|                       |                   |   | supported:                                                                                            |
+|                       |                   |   |                                                                                                       |
+|                       |                   |   | * ``SIGN_ECC`` – ECC signature key is used;                                                           |
+|                       |                   |   | * ``SIGN_RSA`` – RSA signature key is used;                                                           |
+|                       |                   |   | * ``AUTH_ECC`` – ECC signature key is used;                                                           |
+|                       |                   |   | * ``AUTH_RSA`` – RSA authentication key is used.                                                      |
+|                       |                   |   | * ``ECC`` – ECC signature key is used, for backward compatibility;                                    |
+|                       |                   |   | * ``RSA`` – RSA signature key is used, for backward compatibility;                                    |
+|                       |                   |   |                                                                                                       |
+|                       |                   |   | SIGN_ECC value is used as default value, if ECC keys are available, SIGN_RSA otherwise                |
++-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 
 #### Response
 

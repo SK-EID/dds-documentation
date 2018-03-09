@@ -3519,10 +3519,10 @@ supported:</p>
 <ul>
 <li><code>SIGN_ECC</code> – ECC signature key is used;</li>
 <li><code>SIGN_RSA</code> – RSA signature key is used;</li>
-<li><code>AUTH_ECC</code> – ECC signature key is used;</li>
-<li><code>AUTH_RSA</code> – RSA authentication key is used.</li>
-<li><code>ECC</code> – ECC signature key is used, for backward compatibility;</li>
-<li><code>RSA</code> – RSA signature key is used, for backward compatibility;</li>
+<li><code>AUTH_ECC</code> – ECC authentication key is used;</li>
+<li><code>AUTH_RSA</code> – RSA authentication key is used;</li>
+<li><code>ECC</code> – ECC signature key is used, old value for backward compatibility;</li>
+<li><code>RSA</code> – RSA signature key is used, old value for backward compatibility;</li>
 </ul>
 <p>SIGN_ECC value is used as default value, if ECC keys are available, SIGN_RSA otherwise</p>
 </td>
@@ -3547,7 +3547,7 @@ supported:</p>
 <tr>
 <td>ChallengeID</td>
 <td>String</td>
-<td>- 4 (number) character control code, which is calculated on a basis of Challenge value that will be sent to the user's phone for signing.- 40 characters long HEX i.e. hash Challenge to be signed. Will be used only in case of Bite MSSP operator.This control code shall be displayed to the user by the application; with this it will be possible for the user to prove the authenticity of the request.NOTE: Application must prompt the user to check the compatibility of the control code displayed in the application and on the phone screen.</td>
+<td>- 4 (number) character control code, which is calculated on a basis of Challenge value that will be sent to the user's phone for signing.- This control code shall be displayed to the user by the application; with this it will be possible for the user to prove the authenticity of the request.NOTE: Application must prompt the user to check the compatibility of the control code displayed in the application and on the phone screen.</td>
 </tr>
 <tr>
 <td>Status</td>
@@ -4037,7 +4037,7 @@ on the returned certificate in the "CertificateData" field.</p>
             
             
                 <small>
-                    Last update: <strong>28.02.2018</strong>
+                    Last update: <strong>09.03.2018</strong>
                 </small>
             
         </div>

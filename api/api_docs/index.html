@@ -57,7 +57,7 @@
             <!-- Main title -->
             <a class="navbar-brand" href="../..">
                 DigiDocService Specification 
-                <small class="small small-brand-text">3.11.1</small>
+                <small class="small small-brand-text">3.11.4</small>
             </a>
         </div>
 
@@ -3378,60 +3378,154 @@ returned in any case):</p>
 <table>
 <thead>
 <tr>
-<th><strong>Parameter</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>R</strong></th>
-<th><strong>Description</strong></th>
+<th colspan="1" rowspan="1">
+<p>Parameter</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>Type</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>R</p>
+</th>
+<th colspan="1" rowspan="1">
+<p>Description</p>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>IDCode</td>
-<td>String</td>
-<td>+</td>
-<td>Personal Identification Code of the user</td>
+<td colspan="1" rowspan="1">
+<p>IDCode</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Personal Identification Code of the user</p>
+</td>
 </tr>
 <tr>
-<td>PhoneNo</td>
-<td>String</td>
-<td>+</td>
-<td>Phone number of the certificate number complete with the country code in the form +xxxxxxxxx (e.g. +3706234566).A match between the phone number and the ID-code will be checked and in case on non-compliance a SOAP error code 301 will be returned,</td>
+<td colspan="1" rowspan="1">
+<p>PhoneNo</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Phone number of the certificate number complete with the country code in the form +xxxxxxxxx
+(e.g. +3706234566). A match between the phone number and the ID-code will be checked and in case on
+non-compliance a SOAP error code 301 will be returned,</p>
+</td>
 </tr>
 <tr>
-<td>Language</td>
-<td>String(3)</td>
-<td>+</td>
-<td>Language of the messages displayed on user's phone. ISO 3166 3-letter codes are being used. Possible values are: EST, ENG, LIT and RUS.</td>
+<td colspan="1" rowspan="1">
+<p>Language
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String(3)
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Language of the messages displayed on user's phone. ISO 639 3-letter codes are being used. Possible
+values are: EST, ENG, LIT and RUS.</p>
+</td>
 </tr>
 <tr>
-<td>MessageToDisplay</td>
-<td>String(40)</td>
-<td>-</td>
-<td>Text displayed in addition to ServiceName and before asking authentication PIN. Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols.</td>
+<td colspan="1" rowspan="1">
+<p>MessageToDisplay</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String(40)</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>-</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Text displayed in addition to ServiceName and before asking authentication PIN.
+Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but
+Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols.</p>
+</td>
 </tr>
 <tr>
-<td>ServiceName</td>
-<td>String(20)</td>
-<td>+</td>
-<td>Name of the service – previously agreed with Application Provider and DigiDocService operator. Maximum length – 20 chars.</td>
+<td colspan="1" rowspan="1">
+<p>ServiceName
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String(20)
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+
+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Name of the service – previously agreed with Application Provider and DigiDocService operator.
+Maximum length – 20 chars.</p>
+</td>
 </tr>
 <tr>
-<td>Hash</td>
-<td>String(128)</td>
-<td>+</td>
-<td>A hash to be signed. Transferred as a HEX string.</td>
+<td colspan="1" rowspan="1">
+<p>Hash</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String(128)</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>A hash to be signed. Transferred as a HEX string.</p>
+</td>
 </tr>
 <tr>
-<td>HashType</td>
-<td>Enumeration</td>
-<td>+</td>
-<td>A hash type to be signed. SHA1, SHA256 and SHA512 hashes are currently supported.</td>
+<td colspan="1" rowspan="1">
+<p>HashType</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Enumeration</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>+</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>A hash type to be signed. SHA1, SHA256 and SHA512 hashes are currently supported.</p>
+</td>
 </tr>
 <tr>
-<td>KeyID</td>
-<td>String</td>
-<td>-</td>
-<td>Key type used for signing. RSA and ECC keys are currently supported.</td>
+<td colspan="1" rowspan="1">
+<p>KeyID</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>String</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>-</p>
+</td>
+<td colspan="1" rowspan="1">
+<p>Key type used for creating signature. Authentication and signature, RSA and ECC keys are currently
+supported:</p>
+<ul>
+<li><code>SIGN_ECC</code> – ECC signature key is used;</li>
+<li><code>SIGN_RSA</code> – RSA signature key is used;</li>
+<li><code>AUTH_ECC</code> – ECC signature key is used;</li>
+<li><code>AUTH_RSA</code> – RSA authentication key is used.</li>
+<li><code>ECC</code> – ECC signature key is used, for backward compatibility;</li>
+<li><code>RSA</code> – RSA signature key is used, for backward compatibility;</li>
+</ul>
+<p>SIGN_ECC value is used as default value, if ECC keys are available, SIGN_RSA otherwise</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -3938,12 +4032,12 @@ on the returned certificate in the "CertificateData" field.</p>
         <div class="pull-left col-md-6">
             
                <small> 
-                    Document version: <strong>3.11.1</strong>
+                    Document version: <strong>3.11.4</strong>
                </small>
             
             
                 <small>
-                    Last update: <strong>23.10.2017</strong>
+                    Last update: <strong>28.02.2018</strong>
                 </small>
             
         </div>

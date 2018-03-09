@@ -1241,10 +1241,10 @@ This operation is using the document/literal style and is accessible from [https
 |                       |                   |   |                                                                                                       |
 |                       |                   |   | * ``SIGN_ECC`` – ECC signature key is used;                                                           |
 |                       |                   |   | * ``SIGN_RSA`` – RSA signature key is used;                                                           |
-|                       |                   |   | * ``AUTH_ECC`` – ECC signature key is used;                                                           |
-|                       |                   |   | * ``AUTH_RSA`` – RSA authentication key is used.                                                      |
-|                       |                   |   | * ``ECC`` – ECC signature key is used, for backward compatibility;                                    |
-|                       |                   |   | * ``RSA`` – RSA signature key is used, for backward compatibility;                                    |
+|                       |                   |   | * ``AUTH_ECC`` – ECC authentication key is used;                                                      |
+|                       |                   |   | * ``AUTH_RSA`` – RSA authentication key is used;                                                      |
+|                       |                   |   | * ``ECC`` – ECC signature key is used, old value for backward compatibility;                          |
+|                       |                   |   | * ``RSA`` – RSA signature key is used, old value for backward compatibility;                          |
 |                       |                   |   |                                                                                                       |
 |                       |                   |   | SIGN_ECC value is used as default value, if ECC keys are available, SIGN_RSA otherwise                |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+

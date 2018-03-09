@@ -1254,7 +1254,7 @@ This operation is using the document/literal style and is accessible from [https
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | Sesscode | String | Identifier of the session. |
-| ChallengeID | String | - 4 (number) character control code, which is calculated on a basis of Challenge value that will be sent to the user's phone for signing.- 40 characters long HEX i.e. hash Challenge to be signed. Will be used only in case of Bite MSSP operator.This control code shall be displayed to the user by the application; with this it will be possible for the user to prove the authenticity of the request.NOTE: Application must prompt the user to check the compatibility of the control code displayed in the application and on the phone screen. |
+| ChallengeID | String | - 4 (number) character control code, which is calculated on a basis of Challenge value that will be sent to the user's phone for signing.- This control code shall be displayed to the user by the application; with this it will be possible for the user to prove the authenticity of the request.NOTE: Application must prompt the user to check the compatibility of the control code displayed in the application and on the phone screen. |
 | Status | String | "OK" if the procedure was performed successfully. If method call-up will result with an error, a SOAP error object will be returned. |
 
 If method call-up will result with an error, a SOAP error object will be returned according to the description in [SOAP Error messages](#soap-error-messages).

@@ -1180,9 +1180,9 @@ The method is used to request user's certificates.
 |                       |                   |   | * ``both`` – request for both (authentication and digital signing) default certificates;              | 
 |                       |                   |   | * ``bothRSA`` – both RSA certificates; "bothECC" – both ECC certificates;                             |
 |                       |                   |   | * ``"none`` – none.                                                                                   |               
-                        |                   |   |                                                                                                       |
-                        |                   |   | In case the user only has RSA certificates but ECC certificates are requested or vice versa then      |
-                        |                   |   | SOAP error code 105 is returned                                                                       |
+|                       |                   |   |                                                                                                       |
+|                       |                   |   | In case the user only has RSA certificates but ECC certificates are requested or vice versa then      |
+|                       |                   |   | SOAP error code 105 is returned                                                                       |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 
 #### Response

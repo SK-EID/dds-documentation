@@ -1175,23 +1175,26 @@ The method is used to request user's certificates.
 |                       |                   |   | * ``authRSA`` – request for authentication RSA certificate, if available;                             |
 |                       |                   |   | * ``authECC`` – request for authentication ECC certificate, if available;                             |
 |                       |                   |   | * ``sign`` – request for default certificate for digital signing;                                     |
-|                       |                   |   | * ``signRSA`` – request for RSA certificate for digital signing, if available; signECC – request      |
-|                       |                   |   |   for ECC certificate for digital signing, if available;                                              |
+|                       |                   |   | * ``signRSA`` – request for RSA certificate for digital signing, if available;                        |
+|                       |                   |   | * ``signECC`` – request for ECC certificate for digital signing, if available;                        |
 |                       |                   |   | * ``both`` – request for both (authentication and digital signing) default certificates;              | 
 |                       |                   |   | * ``bothRSA`` – both RSA certificates; "bothECC" – both ECC certificates;                             |
-|                       |                   |   | * ``"none`` – none.                                                                                   |
+|                       |                   |   | * ``"none`` – none.                                                                                   |               
+                        |                   |   |                                                                                                       |
+                        |                   |   | In case the user only has RSA certificates but ECC certificates are requested or vice versa then      |
+                        |                   |   | SOAP error code 105 is returned                                                                       |
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
 
 #### Response
 
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
-| AuthCertStatus | String | OK – the authentication certificate has not expired. Note that the certificate may still be inactive for other reasons (it may be revoked by its owner).REVOKED – certificate has expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation). |
-| SignCertStatus | String | OK – the signing certificate has not expired. Note that the certificate may still be inactive for other reasons (it may be revoked by its owner).REVOKED – certificate has expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation). |
+| AuthCertStatus | String | OK – the authentication certificate has not expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation). |
+| SignCertStatus | String | OK – the signing certificate has not expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation). |
 | AuthCertData | String | Authentication certificate in PEM form |
 | SignCertData | String | Digital signing certificate in PEM form |
 
-If the user does not possess Mobile-ID SIM, SOAP fault is returned in accordance with p 9.4.
+If the users certificates are expired or are marked as REVOKED or the user does not possess Mobile-ID SIM, SOAP fault is returned in accordance with p 9.4. See [SOAP Error messages](#soap-error-messages) with error codes 305, 302 and 301.
 
 
 
@@ -1519,6 +1522,7 @@ A new structure of error objects is being used in the responses of the methods M
 | 102 | Some of required input parameters are missing |
 | 103 | Client does not have access to external service, e.g. MSSP or SK validity confirmation service (OCSP response UNAUTHORIZED |
 | 104 | Client is not authorized to access service |
+| 105 | User don't have specified type of certificates |
 | 200 | General error of the service |
 | 201 | Missing user certificate |
 | 202 | Unable to verify certificate validity |

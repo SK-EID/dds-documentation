@@ -1138,8 +1138,7 @@ The method is used to query status information when using asynchClientServer mob
 |                       |                   | * ``REVOKED_CERTIFICATE`` – certificate revoked                                                           |
 |                       |                   | * ``INTERNAL_ERROR`` – technical error.                                                                   |
 +-----------------------+-------------------+-----------------------------------------------------------------------------------------------------------+
-| Signature             | String            | Signature value in PKCS#1 container in BASE64 encoding. Can be either an RSA or ECDSA signature,          |
-|                       |                   | depending on the signer's certificate returned with the signature block.                                  |
+| Signature             | String            | The resulting ``<Signature>`` block in  pure XML.                                                         |
 +-----------------------+-------------------+-----------------------------------------------------------------------------------------------------------+
 
 Is the value in Status field is not OUTSTANDING\_TRANSACTION then active session is closed after this request.

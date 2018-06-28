@@ -1533,8 +1533,6 @@ A new structure of error objects is being used in the responses of the methods M
 | 303 | Certificate is not activated or/and status of the certificate is unknown (OCSP said: UNKNOWN) |
 | 304 | Certificates is suspended |
 | 305 | Certificate is expired |
-| 413 | Incoming message exceeds permitted volume limit. |
-| 503 | The number of simultaneous requests of the service has been exceeded. |
 
 #### Example 1 of the service error message
 
@@ -1571,6 +1569,16 @@ Several errors were identified in the request (the second version service, new s
    </detail>
 </SOAP-ENV:Fault>
 ```
+#### Non Soap Errors
+
+
+The service can also return plain HTTP errors in certain cases
+
+| **Error Code** | **Explanation** |
+| --- | --- |
+| 413 | Incoming message exceeds permitted volume limit. |
+| 503 | The number of simultaneous requests of the service has been exceeded. |
+
 
 ## Container validation
 

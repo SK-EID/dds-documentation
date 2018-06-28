@@ -850,7 +850,7 @@ Potential error-messages:
 
 ## GetNotary
 
-The request returns the validity confirmation of the certain signature.
+The request returns the certificate validity confirmation of the certain signature.
 
 #### Request
 

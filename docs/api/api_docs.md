@@ -850,7 +850,7 @@ Potential error-messages:
 
 ## GetNotary
 
-The request returns the validity confirmation of the certain signature.
+The request returns the certificate validity confirmation of the certain signature.
 
 #### Request
 
@@ -1138,8 +1138,7 @@ The method is used to query status information when using asynchClientServer mob
 |                       |                   | * ``REVOKED_CERTIFICATE`` – certificate revoked                                                           |
 |                       |                   | * ``INTERNAL_ERROR`` – technical error.                                                                   |
 +-----------------------+-------------------+-----------------------------------------------------------------------------------------------------------+
-| Signature             | String            | Signature value in PKCS#1 container in BASE64 encoding. Can be either an RSA or ECDSA signature,          |
-|                       |                   | depending on the signer's certificate returned with the signature block.                                  |
+| Signature             | String            | The resulting ``<Signature>`` block in  pure XML.                                                         |
 +-----------------------+-------------------+-----------------------------------------------------------------------------------------------------------+
 
 Is the value in Status field is not OUTSTANDING\_TRANSACTION then active session is closed after this request.
@@ -1533,8 +1532,6 @@ A new structure of error objects is being used in the responses of the methods M
 | 303 | Certificate is not activated or/and status of the certificate is unknown (OCSP said: UNKNOWN) |
 | 304 | Certificates is suspended |
 | 305 | Certificate is expired |
-| 413 | Incoming message exceeds permitted volume limit. |
-| 503 | The number of simultaneous requests of the service has been exceeded. |
 
 #### Example 1 of the service error message
 
@@ -1571,6 +1568,16 @@ Several errors were identified in the request (the second version service, new s
    </detail>
 </SOAP-ENV:Fault>
 ```
+#### Non Soap Errors
+
+
+The service can also return plain HTTP errors in certain cases
+
+| **Error Code** | **Explanation** |
+| --- | --- |
+| 413 | Incoming message exceeds permitted volume limit. |
+| 503 | The number of simultaneous requests of the service has been exceeded. |
+
 
 ## Container validation
 

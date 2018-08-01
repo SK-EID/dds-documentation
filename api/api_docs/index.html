@@ -57,7 +57,7 @@
             <!-- Main title -->
             <a class="navbar-brand" href="../..">
                 DigiDocService Specification 
-                <small class="small small-brand-text">3.11.4</small>
+                <small class="small small-brand-text">3.11.6</small>
             </a>
         </div>
 
@@ -327,6 +327,8 @@
                         <li class="third-level"><a href="#example-1-of-the-service-error-message">Example 1 of the service error message</a></li>
                     
                         <li class="third-level"><a href="#example-2-of-the-service-error-message">Example 2 of the service error message</a></li>
+                    
+                        <li class="third-level"><a href="#non-soap-errors">Non Soap Errors</a></li>
                     
                 
                     <li class="second-level"><a href="#container-validation">Container validation</a></li>
@@ -2342,7 +2344,7 @@ then <code>SignedDocInfo</code> structure will be returned in the format dessrib
 <li><strong>No notary for this Signature!</strong> – no validity confirmation for the signature as the request of the parameter.</li>
 </ul>
 <h2 id="getnotary">GetNotary</h2>
-<p>The request returns the validity confirmation of the certain signature.</p>
+<p>The request returns the certificate validity confirmation of the certain signature.</p>
 <h4 id="request_8">Request</h4>
 <table>
 <thead>
@@ -3219,16 +3221,13 @@ configuration mode. This value has to be previously agreed. Currently,
 </tr>
 <tr>
 <td colspan="1" rowspan="1">
-<p>Signature
-</p>
+<p>Signature</p>
 </td>
 <td colspan="1" rowspan="1">
-<p>String
-</p>
+<p>String</p>
 </td>
 <td colspan="1" rowspan="1">
-<p>Signature value in PKCS#1 container in BASE64 encoding. Can be either an RSA or ECDSA signature,
-depending on the signer's certificate returned with the signature block.</p>
+<p>The resulting <code>&lt;Signature&gt;</code> block in  pure XML.</p>
 </td>
 </tr>
 </tbody>
@@ -3322,12 +3321,14 @@ returned in any case):</p>
 <li><code>authRSA</code> – request for authentication RSA certificate, if available;</li>
 <li><code>authECC</code> – request for authentication ECC certificate, if available;</li>
 <li><code>sign</code> – request for default certificate for digital signing;</li>
-<li><code>signRSA</code> – request for RSA certificate for digital signing, if available; signECC – request
-  for ECC certificate for digital signing, if available;</li>
+<li><code>signRSA</code> – request for RSA certificate for digital signing, if available;</li>
+<li><code>signECC</code> – request for ECC certificate for digital signing, if available;</li>
 <li><code>both</code> – request for both (authentication and digital signing) default certificates;</li>
 <li><code>bothRSA</code> – both RSA certificates; "bothECC" – both ECC certificates;</li>
 <li><code>"none</code> – none.</li>
 </ul>
+<p>In case the user only has RSA certificates but ECC certificates are requested or vice versa then
+SOAP error code 105 is returned</p>
 </td>
 </tr>
 </tbody>
@@ -3345,12 +3346,12 @@ returned in any case):</p>
 <tr>
 <td>AuthCertStatus</td>
 <td>String</td>
-<td>OK – the authentication certificate has not expired. Note that the certificate may still be inactive for other reasons (it may be revoked by its owner).REVOKED – certificate has expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation).</td>
+<td>OK – the authentication certificate has not expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation).</td>
 </tr>
 <tr>
 <td>SignCertStatus</td>
 <td>String</td>
-<td>OK – the signing certificate has not expired. Note that the certificate may still be inactive for other reasons (it may be revoked by its owner).REVOKED – certificate has expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation).</td>
+<td>OK – the signing certificate has not expired. The application provider may additionally ask for definitive certificate status by using an OCSP service (for example using the "CheckCertificate" operation).</td>
 </tr>
 <tr>
 <td>AuthCertData</td>
@@ -3364,7 +3365,7 @@ returned in any case):</p>
 </tr>
 </tbody>
 </table>
-<p>If the user does not possess Mobile-ID SIM, SOAP fault is returned in accordance with p 9.4.</p>
+<p>If the users certificates are expired or are marked as REVOKED or the user does not possess Mobile-ID SIM, SOAP fault is returned in accordance with p 9.4. See <a href="#soap-error-messages">SOAP Error messages</a> with error codes 305, 302 and 301.</p>
 <h2 id="mobilesignhash">MobileSignHash</h2>
 <p>This operation starts the process of signing a hash using Mobile-ID. It is meant for signing document formats other than DDOC and BDOC (for example: PDF, ADOC, etc.) For BDOC and DDOC formats, it is recommended to use the MobileCreateSignature and MobileSign operations.</p>
 <p>If it is necessary to fetch signer's certificate before signing (for example, to incorporate the certificate in the document prior to signing), the GetMobileCertificate operation can be used.</p>
@@ -3933,6 +3934,10 @@ on the returned certificate in the "CertificateData" field.</p>
 <td>Client is not authorized to access service</td>
 </tr>
 <tr>
+<td>105</td>
+<td>User don't have specified type of certificates</td>
+</tr>
+<tr>
 <td>200</td>
 <td>General error of the service</td>
 </tr>
@@ -3972,14 +3977,6 @@ on the returned certificate in the "CertificateData" field.</p>
 <td>305</td>
 <td>Certificate is expired</td>
 </tr>
-<tr>
-<td>413</td>
-<td>Incoming message exceeds permitted volume limit.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>The number of simultaneous requests of the service has been exceeded.</td>
-</tr>
 </tbody>
 </table>
 <h4 id="example-1-of-the-service-error-message">Example 1 of the service error message</h4>
@@ -4013,6 +4010,26 @@ on the returned certificate in the "CertificateData" field.</p>
 &lt;/SOAP-ENV:Fault&gt;
 </code></pre>
 
+<h4 id="non-soap-errors">Non Soap Errors</h4>
+<p>The service can also return plain HTTP errors in certain cases</p>
+<table>
+<thead>
+<tr>
+<th><strong>Error Code</strong></th>
+<th><strong>Explanation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>413</td>
+<td>Incoming message exceeds permitted volume limit.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>The number of simultaneous requests of the service has been exceeded.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="container-validation">Container validation</h2>
 <p>When an existing container is sent to DigiDocService, the document is automatically validated. Starting from JDigiDoc library version 3.8 certain technical errors are allowed in the container for compatibility reasons. Such errors are reported as warnings.</p>
 <p>When a container has warnings, the signatures are considered legally valid (and thus the status of these signatures is "OK", even though an "Error" element is also present). For some warnings, further modifications to the document are not allowed (adding and removing signatures is not permitted). The following errors are considered warnings:</p>
@@ -4032,12 +4049,12 @@ on the returned certificate in the "CertificateData" field.</p>
         <div class="pull-left col-md-6">
             
                <small> 
-                    Document version: <strong>3.11.4</strong>
+                    Document version: <strong>3.11.6</strong>
                </small>
             
             
                 <small>
-                    Last update: <strong>09.03.2018</strong>
+                    Last update: <strong>28.06.2018</strong>
                 </small>
             
         </div>

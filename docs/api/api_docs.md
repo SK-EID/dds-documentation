@@ -1273,7 +1273,7 @@ This operation returns the status of the hash signing operation and, in the case
 
 | **Parameter** | **Type** | **R** | **Description** |
 | --- | --- | --- | --- |
-| Sesscode | String(20) | + | Identifier of the session. |
+| Sesscode | String | + | Identifier of the session. |
 | WaitSignature | Boolean | -  | If "True", the response is not returned to the request before the signature value has arrived from the phone or an error has occurred.  If "False", the response will be returned immediately and the Application provider has to repeat the request after some time (preferably in 2-10 seconds). |
 
 #### Response

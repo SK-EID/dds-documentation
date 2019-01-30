@@ -347,6 +347,6 @@ Challenge number should be correctly implemented and highly visible also when Mo
 
 # Service Change History
 
-Service changes' history can be found at [http://www.id.ee/?lang=en&id=36458](http://www.id.ee/?lang=en&id=36458)
+Service changes' history can be found at [https://github.com/SK-EID/dds-documentation/wiki/Change-log](https://github.com/SK-EID/dds-documentation/wiki/Change-log)
 
 1. Information about canonic XML: [http://www.w3.org/TR/xml-c14n](http://www.w3.org/TR/xml-c14n)

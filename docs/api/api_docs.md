@@ -245,9 +245,7 @@ To use this HASHCODE mode, the DigiDoc or BDOC-container should be converted to 
 
 #### BDOC format and HASHCODE
 
-> **Note!** Hashcode is currently supported only for BDOC-TM.
-
-> Support for BDOC-TS will be added in the future.
+> **Note!** Hashcode is supported for BDOC-TM, **support for BDOC-TS will NOT be added**.
 
 #### Transforming a BDOC container to HASHCODE form
 

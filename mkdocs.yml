@@ -7,9 +7,9 @@ extra_javascript:
 markdown_extensions:
   - grid_tables
 extra:
-  last_updated: '28.06.2018'
-  service_version: '3.11.6'
-  document_version: '3.11.6'
+  last_updated: '30.01.2019'
+  service_version: '3.11.7'
+  document_version: '3.11.7'
 pages:
   - Overview: index.md      
   - API Docs: api/api_docs.md

@@ -1,4 +1,5 @@
 # DigiDocService specification
+https://sk-eid.github.io/dds-documentation/
 
 Git checkout:
 

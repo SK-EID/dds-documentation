@@ -419,7 +419,7 @@ DigiDocService chooses the most suitable certificate automatically.</p>
 <li>SessionCode is returned to the application, what enables the following procedures with the session data.</li>
 <li>Before signing the application may add supplementary data files (AddDataFile request) or remove some datafiles (RemoveDataFile request) or carry out some other procedures with session data.</li>
 <li>After procedures the current session document information is returned.</li>
-<li>The signing modules are integrated in the webpage which offers digital signing. Also some information about the signer's role/resolution and the signing location may be asked the user on the webpage. The signing component located on the webpage reads the signer's certificate information from the smartcard. It is recommended to use Javascript library idCard.js for loading signature modules - available from <a href="http://www.id.ee">id.ee</a></li>
+<li>The signing modules are integrated in the webpage which offers digital signing. Also some information about the signer's role/resolution and the signing location may be asked the user on the webpage. The signing component located on the webpage reads the signer's certificate information from the smartcard. It is recommended to use Javascript library hwcrypto.js for loading signature modules - available from <a href="https://github.com/hwcrypto/hwcrypto.js/releases">github.com</a></li>
 <li>The certificate from the signer's smartcard together with other user inserted signature attributes is forwarded to the signing web-server.</li>
 <li>Signature parameters are forwarded to DigiDocService with PrepareSignature request.</li>
 <li>DigiDocService adds new signature information to the session document – signer's certificate and signature parameters and calculates the hash, what should be signed by the signer. The signed hash is sent to the application provider in PrepareSignature response.</li>
@@ -581,5 +581,5 @@ Estonian Mobile-ID users. The requirement is planned to be turned obligatory in 
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2019-01-31 07:58:03
+Build Date UTC : 2019-01-31 11:24:51
 -->

@@ -57,7 +57,7 @@
             <!-- Main title -->
             <a class="navbar-brand" href="../..">
                 DigiDocService Specification 
-                <small class="small small-brand-text">3.11.6</small>
+                <small class="small small-brand-text">3.11.7</small>
             </a>
         </div>
 
@@ -967,6 +967,9 @@ parameter is only present when ReturnRevocationData request parameter has been s
 <li>There is also an option for creating DigiDoc containers directly from this operation (this option only works for DigiDoc containers; BDOC can be created with the "CreateSignedDoc" operation). To use this operation, "SigDocXML" parameter should be empty, "datafile" parameter should be filled.</li>
 </ol>
 <p>In the course of the StartSession's query a unique session identifier is returned, which should be added to every procedure called within the transaction.</p>
+<blockquote>
+<p><strong>NOTE</strong>: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.</p>
+</blockquote>
 <h4 id="query_3">Query:</h4>
 <table>
 <thead>
@@ -1039,8 +1042,7 @@ parameter is only present when ReturnRevocationData request parameter has been s
 <p>To use this HASHCODE mode, the DigiDoc or BDOC-container should be converted to the HASHCODE form before sending it to the service. (In this form, the data file contents are replaced with their hash values.) Similarly, when the container is returned by the service, it should be converted back to regular form by inserting back the data file contents. Thus, in the end, the application provider still has a regular container that can be verified by standard tools (i.e., the DigiDoc3 client software). The exact form of HASHCODE depends on the particular format used (DDOC or BDOC).</p>
 <h4 id="bdoc-format-and-hashcode">BDOC format and HASHCODE</h4>
 <blockquote>
-<p><strong>Note!</strong> Hashcode is currently supported only for BDOC-TM.</p>
-<p>Support for BDOC-TS will be added in the future.</p>
+<p><strong>Note!</strong> Hashcode is supported for BDOC-TM, <strong>support for BDOC-TS will NOT be added</strong>.</p>
 </blockquote>
 <h4 id="transforming-a-bdoc-container-to-hashcode-form">Transforming a BDOC container to HASHCODE form</h4>
 <p>Given the BDOC format, the container should be transformed to the HASCODE form in the following steps (before sending it to the DigiDocService):</p>
@@ -3235,9 +3237,6 @@ configuration mode. This value has to be previously agreed. Currently,
 <p>Is the value in Status field is not OUTSTANDING_TRANSACTION then active session is closed after this request.</p>
 <h2 id="getmobilecertificate">GetMobileCertificate</h2>
 <p>The method is used to request user's certificates.</p>
-<blockquote>
-<p><strong>NB!</strong> The usage of this method is limited (IP-address based access).  It is necessary to request the separate access from SK with clear argument why it is needed.</p>
-</blockquote>
 <h4 id="request_13">Request</h4>
 <table>
 <thead>
@@ -3324,7 +3323,8 @@ returned in any case):</p>
 <li><code>signRSA</code> – request for RSA certificate for digital signing, if available;</li>
 <li><code>signECC</code> – request for ECC certificate for digital signing, if available;</li>
 <li><code>both</code> – request for both (authentication and digital signing) default certificates;</li>
-<li><code>bothRSA</code> – both RSA certificates; "bothECC" – both ECC certificates;</li>
+<li><code>bothRSA</code> – both RSA certificates;</li>
+<li><code>bothECC</code> – both ECC certificates;</li>
 <li><code>"none</code> – none.</li>
 </ul>
 <p>In case the user only has RSA certificates but ECC certificates are requested or vice versa then
@@ -3372,9 +3372,6 @@ SOAP error code 105 is returned</p>
 <p>This operation locates the signer's certificate and sends the signing request to the signer's mobile device (since 3.10 MobileSignHash doesn't request for OCSP). An active session is not required.</p>
 <p>The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.</p>
 <p>This operation is using the document/literal style and is accessible from <a href="https://digidocservice.sk.ee/v2/mid.wsdl">https://digidocservice.sk.ee/v2/mid.wsdl</a>.  New version of the service uses a separate WSDL, and error message format has been updated (see <a href="#soap-error-messages">SOAP Error messages</a>).</p>
-<blockquote>
-<p><strong>NOTE</strong>: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.</p>
-</blockquote>
 <h4 id="request_14">Request</h4>
 <table>
 <thead>
@@ -3574,7 +3571,7 @@ supported:</p>
 <tbody>
 <tr>
 <td>Sesscode</td>
-<td>String(20)</td>
+<td>String</td>
 <td>+</td>
 <td>Identifier of the session.</td>
 </tr>
@@ -4049,12 +4046,12 @@ on the returned certificate in the "CertificateData" field.</p>
         <div class="pull-left col-md-6">
             
                <small> 
-                    Document version: <strong>3.11.6</strong>
+                    Document version: <strong>3.11.7</strong>
                </small>
             
             
                 <small>
-                    Last update: <strong>28.06.2018</strong>
+                    Last update: <strong>30.01.2019</strong>
                 </small>
             
         </div>

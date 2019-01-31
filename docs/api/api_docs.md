@@ -218,6 +218,8 @@ In most cases the transaction with the service is started using the StartSession
 
 In the course of the StartSession's query a unique session identifier is returned, which should be added to every procedure called within the transaction.
 
+> **NOTE**: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.
+
 #### Query:
 
 | **Parameter** | **Type** | **R** | **Description** |
@@ -245,9 +247,7 @@ To use this HASHCODE mode, the DigiDoc or BDOC-container should be converted to 
 
 #### BDOC format and HASHCODE
 
-> **Note!** Hashcode is currently supported only for BDOC-TM.
-
-> Support for BDOC-TS will be added in the future.
+> **Note!** Hashcode is supported for BDOC-TM, **support for BDOC-TS will NOT be added**.
 
 #### Transforming a BDOC container to HASHCODE form
 
@@ -1150,8 +1150,6 @@ Is the value in Status field is not OUTSTANDING\_TRANSACTION then active session
 
 The method is used to request user's certificates.
 
-> **NB!** The usage of this method is limited (IP-address based access).  It is necessary to request the separate access from SK with clear argument why it is needed.
-
 #### Request
 
 +-----------------------+-------------------+---+-------------------------------------------------------------------------------------------------------+
@@ -1177,7 +1175,8 @@ The method is used to request user's certificates.
 |                       |                   |   | * ``signRSA`` – request for RSA certificate for digital signing, if available;                        |
 |                       |                   |   | * ``signECC`` – request for ECC certificate for digital signing, if available;                        |
 |                       |                   |   | * ``both`` – request for both (authentication and digital signing) default certificates;              | 
-|                       |                   |   | * ``bothRSA`` – both RSA certificates; "bothECC" – both ECC certificates;                             |
+|                       |                   |   | * ``bothRSA`` – both RSA certificates; 									                            |
+|                       |                   |   | * ``bothECC`` – both ECC certificates; 									                            |
 |                       |                   |   | * ``"none`` – none.                                                                                   |               
 |                       |                   |   |                                                                                                       |
 |                       |                   |   | In case the user only has RSA certificates but ECC certificates are requested or vice versa then      |
@@ -1210,8 +1209,6 @@ This operation locates the signer's certificate and sends the signing request to
 The status of the hash signing process is checked in ClientServer mode with the GetMobileSignHashStatusV2 operation. Note! Before sending the first status request, it is recommended to wait at least 10 seconds, as the signing process cannot finish faster due to human and technology factors. Mobile-ID transactions will time out in 4 minutes or less.
 
 This operation is using the document/literal style and is accessible from [https://digidocservice.sk.ee/v2/mid.wsdl](https://digidocservice.sk.ee/v2/mid.wsdl).  New version of the service uses a separate WSDL, and error message format has been updated (see [SOAP Error messages](#soap-error-messages)).
-
-> **NOTE**: The usage of this method is limited (IP-address based access).  It is necessary to request the separate access permissions for using it.
 
 #### Request
 

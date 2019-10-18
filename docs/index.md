@@ -1,11 +1,8 @@
 # SK ID Solutions AS DigiDocService specification
 
 >**NB!**
->``DigiDocService`` will be ``replaced`` by new ``Mobile-ID REST`` API during ``2019/2020``. 
->
->Especially when doing ``new developments please use new REST API!`` 
->Starting from June 2019 new customers are only allowed to use Mobile-ID REST API
->and will no longer granted an access to DigiDocService.
+>``DigiDocService`` will be ``replaced`` by new ``Mobile-ID REST API`` during 2019/2020. 
+>From ``October 1, 2020``, the service will no longer be available for use. Please use new Mobile-ID REST API!
 >
 >``Mobile-ID REST API specification`` you can find here: [https://github.com/SK-EID/MID/wiki](https://github.com/SK-EID/MID/wiki)
 

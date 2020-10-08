@@ -4,13 +4,10 @@ extra_css:
   - css/override.css
 extra_javascript:
   - js/custom.js
-markdown_extensions:
-  - grid_tables
 extra:
-  last_updated: '30.01.2019'
+  last_updated: '01.10.2020'
   service_version: '3.11.7'
   document_version: '3.11.7'
 pages:
-  - Overview: index.md      
-  - API Docs: api/api_docs.md
+  - Overview: index.md
 
